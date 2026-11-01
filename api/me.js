@@ -1,7 +1,7 @@
 import { CLASSES, REMIND_OPTIONS, getSub, saveSub, deleteSub, normalize, publicSub, cleanMajors, readBody } from './_lib.js';
 import { applyNotifyPrefs, normalizeNotify } from './_notify.js';
 
-// Keep fields that normalize() may not know about (phone, channels, kinds, push, lastLoginMail...).
+// Keep fields that normalize() may not know about (channels, kinds, push, lastLoginMail...).
 const full = (s) => normalizeNotify(normalize(s));
 const pub = (s) => publicSub(s);
 

@@ -62,7 +62,7 @@ export const normalize = (s) => ({
   majors: Array.isArray(s.majors) ? s.majors.filter((m) => MAJORS[m]) : [],
 });
 export const cleanMajors = (a) => (Array.isArray(a) ? [...new Set(a)].filter((m) => MAJORS[m]) : []);
-export const publicSub = (s) => ({ name: s.name, cls: s.cls, email: s.email, remind: s.remind, majors: s.majors || [], paused: !!s.paused, createdAt: s.createdAt, isAdmin: isAdmin(s), phone: s.phone || null, channels: s.channels || { email: true }, kinds: s.kinds || ['bagrut', 'mock', 'exam', 'event'], pushCount: Array.isArray(s.push) ? s.push.length : 0 });
+export const publicSub = (s) => ({ name: s.name, cls: s.cls, email: s.email, remind: s.remind, majors: s.majors || [], paused: !!s.paused, createdAt: s.createdAt, isAdmin: isAdmin(s), channels: s.channels || { email: true, push: false }, kinds: s.kinds || ['bagrut', 'mock', 'exam', 'event'], pushCount: Array.isArray(s.push) ? s.push.length : 0 });
 
 export const todayIL = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jerusalem' }).format(new Date());
 export const addDays = (iso, n) => {
