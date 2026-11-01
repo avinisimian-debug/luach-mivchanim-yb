@@ -3,13 +3,15 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>לוח מבחנים י״ב · תשפ״ז</title>
+<title>לוח מבחנים י״ב · מחזור נ״ג</title>
 <meta name="description" content="לוח המבחנים של שכבת י״ב לפי כיתה ומגמה, עם תזכורת במייל לפני כל מבחן.">
 <meta name="theme-color" content="#F2F4F8">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232F52D6'/><stop offset='1' stop-color='%230E8A70'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='32' y='44' font-size='30' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>יב</text></svg>">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="לוח מבחנים י״ב">
-<meta property="og:title" content="לוח מבחנים י״ב · תשפ״ז">
+<meta property="og:title" content="לוח מבחנים י״ב · מחזור נ״ג">
 <meta property="og:description" content="כל המבחנים, הבגרויות, המתכונות ושבתות הישיבה של השכבה, לפי כיתה ומגמה. עם תזכורות לפני כל מבחן.">
 <meta property="og:url" content="https://luach-mivchanim-yb.vercel.app/">
 <meta property="og:image" content="https://luach-mivchanim-yb.vercel.app/og.jpg">
@@ -18,7 +20,7 @@
 <meta property="og:locale" content="he_IL">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/manifest.webmanifest">
-<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="לוח מבחנים">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -66,7 +68,9 @@ a{color:var(--bagrut)}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--canvas) 78%,transparent);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
 .top .in{max-width:1000px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:12px}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
-.mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--bagrut),#7A5CFF 60%,var(--exam));color:#fff;display:grid;place-items:center;font:700 15px var(--sans);box-shadow:0 6px 18px -6px color-mix(in srgb,var(--bagrut) 70%,transparent)}
+.mark{width:44px;height:44px;border-radius:50%;background:#fff;display:grid;place-items:center;flex:none;box-shadow:0 0 0 1px color-mix(in srgb,var(--line) 80%,transparent),0 6px 18px -8px rgba(0,0,0,.35);overflow:hidden}
+.mark img{width:100%;height:100%;display:block;transition:transform .6s cubic-bezier(.2,.8,.2,1)}
+.brand:hover .mark img{transform:rotate(-12deg) scale(1.04)}
 .brand b{font-weight:700;font-size:16px;line-height:1.1;display:block}
 .brand small{display:block;font-size:12px;color:var(--muted)}
 .nav{margin-inline-start:auto;display:flex;gap:3px;background:color-mix(in srgb,var(--surface) 80%,transparent);border:1px solid var(--line);border-radius:999px;padding:3px}
@@ -471,7 +475,7 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
 .top.scrolled{background:color-mix(in srgb,var(--canvas) 88%,transparent);box-shadow:0 8px 24px -16px rgba(13,24,48,.35)}
 .top.scrolled .in{padding-block:6px}
 .top .mark{transition:transform .3s,width .3s,height .3s}
-.top.scrolled .mark{width:32px;height:32px}
+.top.scrolled .mark{width:36px;height:36px}
 .aurora{will-change:transform}
 .rv{opacity:0;transform:translateY(18px) scale(.985);filter:blur(3px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1),filter .6s}
 .rv.in{opacity:1;transform:none;filter:none}
@@ -504,6 +508,7 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
 .wc .wemo{font-size:22px;line-height:1;display:block;margin:8px 0 2px}
 /* share */
 .ft-share{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 22px;padding:18px 20px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink)}
+.ft-logo{width:56px;height:56px;border-radius:50%;background:#fff;flex:none;box-shadow:0 0 0 1px var(--line)}
 .ft-share b{display:block;font-size:16px}
 .ft-share span{font-size:14px;color:var(--muted)}
 .ft-share .btn{margin-inline-start:auto}
@@ -522,7 +527,7 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
 <body>
 <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
 <header class="top"><div class="in">
-  <a class="brand" href="#/" aria-label="לוח מבחנים י״ב, לדף הראשי"><span class="mark">י״ב</span><span><b>לוח מבחנים</b><small>שכבת י״ב · תשפ״ז</small></span></a>
+  <a class="brand" href="#/" aria-label="לוח מבחנים י״ב, לדף הראשי"><span class="mark"><img src="/logo-96.png" alt="" width="44" height="44"></span><span><b>לוח מבחנים</b><small>שכבת י״ב · מחזור נ״ג</small></span></a>
   <nav class="nav" aria-label="ניווט ראשי">
     <a href="#/" data-r="home">הלוח</a>
     <a href="#/me" data-r="me" id="navMe">האזור שלי</a>
@@ -532,7 +537,7 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
   <button class="themeb" id="themeB" type="button"></button>
 </div><div class="sprog" id="sprog"></div></header>
 <main class="wrap" id="app"><div class="skel" aria-hidden="true"></div></main>
-<footer class="ft"><div class="ft-share"><div><b>יש לך חברים במחזור?</b><span>שלחו להם את הלוח, ככה אף אחד לא מפספס מבחן.</span></div><button class="btn glow" type="button" id="shareF"></button></div>נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
+<footer class="ft"><div class="ft-share"><img class="ft-logo" src="/logo-96.png" alt="מחזור נ״ג" width="56" height="56" loading="lazy"><div><b>יש לך חברים במחזור נ״ג?</b><span>שלחו להם את הלוח, ככה אף אחד לא מפספס מבחן.</span></div><button class="btn glow" type="button" id="shareF"></button></div>נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
 <button class="totop" id="totop" type="button" aria-label="חזרה למעלה"></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <dialog id="dlg"></dialog>

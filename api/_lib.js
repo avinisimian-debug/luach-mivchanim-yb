@@ -100,7 +100,7 @@ const shell = (pre, inner, id) => `<!doctype html><html lang="he" dir="rtl"><hea
 <body style="margin:0;background:${C.bg};font-family:Arial,Helvetica,sans-serif;color:${C.ink}">
 <span style="display:none;max-height:0;overflow:hidden">${esc(pre)}</span>
 <div style="max-width:560px;margin:0 auto;padding:24px 14px" dir="rtl">
-<p style="margin:0 0 12px;font-size:13px;font-weight:bold;color:${C.muted}">לוח מבחנים י״ב</p>
+<table role="presentation" style="border-collapse:collapse;margin:0 0 12px"><tr><td style="padding:0 0 0 10px;vertical-align:middle"><img src="${siteUrl()}/logo-email.png" width="64" height="64" alt="מחזור נ״ג" style="display:block;width:64px;height:64px;border-radius:50%;border:0"></td><td style="vertical-align:middle;font-size:13px;font-weight:bold;color:${C.muted}">לוח מבחנים י״ב</td></tr></table>
 <div style="background:#ffffff;border:1px solid ${C.line};border-radius:14px;padding:26px 22px;text-align:right">${inner}</div>
 <p style="font-size:12px;color:${C.muted};text-align:center;margin:18px 0 0;line-height:1.7">
 <a href="${siteUrl()}" style="color:${C.muted}">לוח המבחנים</a>${id ? ` &nbsp;|&nbsp; <a href="${meUrl(id)}" style="color:${C.muted}">האזור האישי וההגדרות</a> &nbsp;|&nbsp; <a href="${unsubUrl(id)}" style="color:${C.muted}">הסרה מהתזכורות</a>` : ''}</p>
