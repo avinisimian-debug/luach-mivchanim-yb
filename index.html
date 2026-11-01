@@ -302,6 +302,9 @@ a{color:var(--bagrut)}
 .tile[aria-pressed="true"]{border-color:var(--bagrut);background:var(--bagrut-s);box-shadow:0 0 0 3px color-mix(in srgb,var(--bagrut) 22%,transparent)}
 .onb .foot{display:flex;gap:8px;align-items:center;margin-top:20px}
 .onb .foot .btn.glow{margin-inline-start:auto}
+.onb .field{position:relative}
+.onb .err{color:var(--urgent);min-height:0;margin:6px 0 0}
+@media (max-width:480px){.onb .foot{flex-wrap:wrap}.onb .foot .btn.glow{order:-1;width:100%;margin:0 0 4px}}
 .slide{animation:slidein .35s cubic-bezier(.2,.8,.2,1)}
 @keyframes slidein{from{opacity:0;transform:translateX(-24px)}}
 .toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,24px) scale(.96);opacity:0;background:var(--ink);color:var(--canvas);padding:11px 18px;border-radius:14px;font-weight:600;font-size:14px;z-index:60;pointer-events:none;transition:all .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 14px 34px rgba(0,0,0,.28);max-width:calc(100% - 32px)}
@@ -645,25 +648,50 @@ function updateNav(){
 function syncFromMe(){if(S.me){S.majors=S.me.majors||[];if(!LS.get('yb.clsManual',false))S.cls=S.me.cls;save()}}
 function onboarding(force){
   if(!force&&(LS.get('yb.onb',false)||S.token))return;
-  const dlg=$('#onb');let step=1,cls=S.cls!=='all'?S.cls:null,mj=[...S.majors];
+  const dlg=$('#onb');let step=1,cls=S.cls!=='all'?S.cls:null,mj=[...S.majors],nm='',em='';
   const draw=()=>{
-    dlg.innerHTML=`<div class="onb"><div class="steps"><i class="on"></i><i class="${step===2?'on':''}"></i></div><div class="slide">${step===1?`
+    const body=step===1?`
       <h2>ברוכים הבאים 👋</h2><p>כדי להראות לך רק את מה שרלוונטי: באיזו כיתה את/ה?</p>
       <div class="tiles">${CLASSES.map(c=>`<button type="button" class="tile" data-c="${c}" aria-pressed="${cls===c}">${c}</button>`).join('')}</div>
-      <div class="foot"><button class="btn ghost" type="button" data-skip>רק להציץ בלוח</button><button class="btn glow" type="button" data-next ${cls?'':'disabled'}>המשך</button></div>`:`
+      <div class="foot"><button class="btn ghost" type="button" data-skip>רק להציץ בלוח</button><button class="btn glow" type="button" data-next ${cls?'':'disabled'}>המשך</button></div>`:step===2?`
       <h2>מה המגמות שלך?</h2><p>אפשר לבחור כמה. נציג רק את הבגרויות, הסיורים והמבחנים של המגמות שבחרת.</p>
       <div class="majors">${Object.entries(MAJORS).map(([k,[n,e]])=>`<button type="button" class="mjb" data-m="${k}" aria-pressed="${mj.includes(k)}"><span class="e">${e}</span>${n}</button>`).join('')}</div>
-      <div class="foot"><button class="btn ghost" type="button" data-back>חזרה</button><button class="btn glow" type="button" data-done>${mj.length?'יאללה, לוח שלי':'בלי מגמה, להציג הכול'}</button></div>`}</div></div>`;
+      <div class="foot"><button class="btn ghost" type="button" data-back>חזרה</button><button class="btn glow" type="button" data-next2>${mj.length?'המשך':'בלי מגמה, המשך'}</button></div>`:`
+      <h2>איך קוראים לך?</h2><p>נשלח לך תזכורת במייל לפני כל מבחן, בגרות ושבת ישיבה. אפשר להסיר בלחיצה בכל מייל.</p>
+      <form id="onbf" novalidate>
+        <div class="field"><label for="onm">שם מלא</label><input class="input" id="onm" autocomplete="name" maxlength="60" value="${esc(nm)}" required></div>
+        <div class="field"><label for="oem">מייל</label><input class="input" id="oem" type="email" dir="ltr" inputmode="email" autocomplete="email" maxlength="120" value="${esc(em)}" required></div>
+        <div class="hp" aria-hidden="true"><input id="owebsite" tabindex="-1" autocomplete="off"></div>
+        <p class="err" id="oerr" role="alert"></p>
+        <div class="foot"><button class="btn ghost" type="button" data-back2>חזרה</button><button class="btn ghost" type="button" data-done>בלי תזכורות</button><button class="btn glow" type="submit" id="ogo">יאללה, לוח שלי</button></div>
+      </form>`;
+    dlg.innerHTML=`<div class="onb"><div class="steps"><i class="on"></i><i class="${step>=2?'on':''}"></i><i class="${step===3?'on':''}"></i></div><div class="slide">${body}</div></div>`;
     dlg.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{cls=b.dataset.c;draw()});
     dlg.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const k=b.dataset.m;mj=mj.includes(k)?mj.filter(x=>x!==k):[...mj,k];draw()});
     const q=s=>dlg.querySelector(s);
+    const keep=()=>{if(q('#onm')){nm=q('#onm').value;em=q('#oem').value}};
     if(q('[data-next]'))q('[data-next]').onclick=()=>{step=2;draw()};
+    if(q('[data-next2]'))q('[data-next2]').onclick=()=>{step=3;draw();setTimeout(()=>q('#onm')&&q('#onm').focus(),60)};
     if(q('[data-back]'))q('[data-back]').onclick=()=>{step=1;draw()};
+    if(q('[data-back2]'))q('[data-back2]').onclick=()=>{keep();step=2;draw()};
     if(q('[data-skip]'))q('[data-skip]').onclick=()=>{LS.set('yb.onb',true);dlg.close()};
+    const finish=(x,y)=>{S.cls=cls;S.majors=mj;LS.set('yb.onb',true);LS.set('yb.clsManual',false);save();dlg.close();confetti(x,y,100);route()};
     if(q('[data-done]'))q('[data-done]').onclick=async e=>{
-      S.cls=cls;S.majors=mj;LS.set('yb.onb',true);LS.set('yb.clsManual',false);save();dlg.close();
       if(S.token&&S.me)await patchMe({cls,majors:mj},'העדפות נשמרו');
-      const r=e.target.getBoundingClientRect();confetti(r.left+r.width/2,r.top,80);route();
+      const r=e.target.getBoundingClientRect();finish(r.left+r.width/2,r.top);
+    };
+    const f=q('#onbf');if(f)f.onsubmit=async e=>{
+      e.preventDefault();keep();const err=q('#oerr');err.textContent='';
+      const name=nm.trim(),email=em.trim();
+      if(name.length<2){err.textContent='צריך למלא שם מלא.';q('#onm').focus();return}
+      if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='כתובת המייל לא תקינה.';q('#oem').focus();return}
+      const go=q('#ogo');go.disabled=true;go.textContent='נרשם…';
+      try{
+        const j=await api('/api/register',{method:'POST',body:{name,email,cls,majors:mj,website:q('#owebsite').value}});
+        S.token=j.token;S.me=j.sub;LS.set('yb.token',S.token);LS.set('yb.me',S.me);updateNav();
+        toast(j.existing?'הפרטים עודכנו':'נרשמת! שלחנו לך מייל אישור');
+        const r=go.getBoundingClientRect();finish(r.left+r.width/2,r.top);
+      }catch(x){err.textContent='ההרשמה לא נשמרה. בדקו את הפרטים ונסו שוב.';go.disabled=false;go.textContent='יאללה, לוח שלי'}
     };
   };
   draw();dlg.showModal();
