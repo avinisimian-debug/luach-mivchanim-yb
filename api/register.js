@@ -24,5 +24,5 @@ export default async function handler(req, res) {
 
   const mail = await sendEmail(email, name, welcomeEmail(saved, upcomingFor(cls, todayIL(), 5, saved.majors)), id);
   if (!mail.ok) console.warn('welcome email', mail.error);
-  return res.status(200).json({ ok: true, token: id, sub: publicSub(saved) });
+  return res.status(200).json({ ok: true, token: id, sub: publicSub(saved), emailed: mail.ok, existing: !!existing });
 }
