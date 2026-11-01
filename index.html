@@ -1,0 +1,757 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>לוח מבחנים י״ב · תשפ״ז</title>
+<meta name="description" content="לוח המבחנים של שכבת י״ב לפי כיתה ומגמה, עם תזכורת במייל לפני כל מבחן.">
+<meta name="theme-color" content="#F2F4F8">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232F52D6'/><stop offset='1' stop-color='%230E8A70'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='32' y='44' font-size='30' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>יב</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --canvas:#F2F4F8; --surface:#FFFFFF; --sunk:#F6F8FB; --ink:#0D1830; --ink2:#2A3650; --muted:#5A6680; --faint:#8C97AC; --line:#DEE3EC; --line2:#EAEEF4;
+  --bagrut:#2F52D6; --bagrut-s:#E7EDFF; --mock:#C47A0E; --mock-s:#FCF1DD; --exam:#0E8A70; --exam-s:#DEF5EF; --event:#7B6CD9; --event-s:#EFEBFF; --hol:#8A93A6; --hol-s:#EFF1F5;
+  --urgent:#E0482F; --ok:#0E8A70; --focus:#2F52D6; --glow1:#7B9BFF; --glow2:#5EE0C0; --glow3:#FFC46B;
+  --r-xl:24px; --r-lg:18px; --r-md:12px;
+  --shadow:0 1px 2px rgba(13,24,48,.05),0 10px 30px -14px rgba(13,24,48,.18);
+  --shadow-h:0 2px 4px rgba(13,24,48,.06),0 18px 40px -16px rgba(13,24,48,.28);
+  --sans:"IBM Plex Sans Hebrew","Arial Hebrew",Arial,sans-serif; --serif:"Frank Ruhl Libre","David",Georgia,serif;
+  color-scheme:light; box-sizing:border-box;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --canvas:#080F1D; --surface:#101A2D; --sunk:#0C1526; --ink:#ECF1F9; --ink2:#C8D2E2; --muted:#93A0B6; --faint:#69768C; --line:#1F2C44; --line2:#172338;
+  --bagrut:#8EA6FF; --bagrut-s:#18244D; --mock:#F4B65E; --mock-s:#33240E; --exam:#5DDDBC; --exam-s:#0E3329; --event:#B3A8FF; --event-s:#221D45; --hol:#8F99AC; --hol-s:#182234;
+  --urgent:#FF7A63; --ok:#5DDDBC; --focus:#8EA6FF; --glow1:#3150C9; --glow2:#0D8A70; --glow3:#9A6514;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 14px 34px -16px rgba(0,0,0,.7); --shadow-h:0 2px 4px rgba(0,0,0,.4),0 22px 44px -16px rgba(0,0,0,.8); color-scheme:dark;}}
+:root[data-theme="dark"]{
+  --canvas:#080F1D; --surface:#101A2D; --sunk:#0C1526; --ink:#ECF1F9; --ink2:#C8D2E2; --muted:#93A0B6; --faint:#69768C; --line:#1F2C44; --line2:#172338;
+  --bagrut:#8EA6FF; --bagrut-s:#18244D; --mock:#F4B65E; --mock-s:#33240E; --exam:#5DDDBC; --exam-s:#0E3329; --event:#B3A8FF; --event-s:#221D45; --hol:#8F99AC; --hol-s:#182234;
+  --urgent:#FF7A63; --ok:#5DDDBC; --focus:#8EA6FF; --glow1:#3150C9; --glow2:#0D8A70; --glow3:#9A6514;
+  --shadow:0 1px 2px rgba(0,0,0,.35),0 14px 34px -16px rgba(0,0,0,.7); --shadow-h:0 2px 4px rgba(0,0,0,.4),0 22px 44px -16px rgba(0,0,0,.8); color-scheme:dark;}
+*,*::before,*::after{box-sizing:inherit}
+html{height:100%;scroll-padding-top:calc(env(safe-area-inset-top,0px) + 80px);-webkit-text-size-adjust:100%}
+body{margin:0;min-height:100%;background:var(--canvas);color:var(--ink);font:400 16px/1.55 var(--sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:color-mix(in srgb,var(--canvas) 85%,transparent);backdrop-filter:blur(14px)}
+button,input,select{font:inherit;color:inherit}
+button{cursor:pointer}
+:focus-visible{outline:2px solid var(--focus);outline-offset:2px;border-radius:8px}
+a{color:var(--bagrut)}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.aurora{position:fixed;inset:-20vh -10vw auto;height:80vh;z-index:-1;pointer-events:none;filter:blur(70px);opacity:.55}
+.aurora i{position:absolute;border-radius:50%}
+.aurora i:nth-child(1){width:46vw;height:46vw;max-width:620px;max-height:620px;background:var(--glow1);top:0;right:8%;opacity:.45;animation:drift1 22s ease-in-out infinite alternate}
+.aurora i:nth-child(2){width:38vw;height:38vw;max-width:520px;max-height:520px;background:var(--glow2);top:8%;left:6%;opacity:.35;animation:drift2 26s ease-in-out infinite alternate}
+.aurora i:nth-child(3){width:30vw;height:30vw;max-width:420px;max-height:420px;background:var(--glow3);top:22%;left:38%;opacity:.25;animation:drift3 30s ease-in-out infinite alternate}
+@keyframes drift1{to{transform:translate(-8vw,6vh) scale(1.1)}}
+@keyframes drift2{to{transform:translate(10vw,4vh) scale(.92)}}
+@keyframes drift3{to{transform:translate(-6vw,-4vh) scale(1.15)}}
+.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:color-mix(in srgb,var(--canvas) 78%,transparent);backdrop-filter:blur(14px) saturate(1.4);border-bottom:1px solid color-mix(in srgb,var(--line) 70%,transparent)}
+.top .in{max-width:1000px;margin:0 auto;padding:10px 18px;display:flex;align-items:center;gap:12px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink)}
+.mark{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--bagrut),#7A5CFF 60%,var(--exam));color:#fff;display:grid;place-items:center;font:700 15px var(--sans);box-shadow:0 6px 18px -6px color-mix(in srgb,var(--bagrut) 70%,transparent)}
+.brand b{font-weight:700;font-size:16px;line-height:1.1;display:block}
+.brand small{display:block;font-size:12px;color:var(--muted)}
+.nav{margin-inline-start:auto;display:flex;gap:3px;background:color-mix(in srgb,var(--surface) 80%,transparent);border:1px solid var(--line);border-radius:999px;padding:3px}
+.nav a{display:flex;align-items:center;gap:7px;text-decoration:none;color:var(--muted);font-weight:600;font-size:14px;padding:7px 14px;border-radius:999px;transition:color .2s,background .2s}
+.nav a:hover{color:var(--ink)}
+.nav a[aria-current="page"]{background:var(--ink);color:var(--canvas)}
+.nav a[hidden]{display:none}
+.nav .av{width:20px;height:20px;border-radius:50%;background:linear-gradient(135deg,var(--bagrut),#7A5CFF);color:#fff;font-size:11px;display:grid;place-items:center;font-weight:700}
+.themeb{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 80%,transparent);display:grid;place-items:center;flex:none;transition:transform .3s}
+.themeb:hover{transform:rotate(-20deg)}
+.themeb svg{width:18px;height:18px}
+.wrap{max-width:1000px;margin:0 auto;padding:22px 18px 80px}
+.h-page{font:900 clamp(30px,5.4vw,44px)/1.1 var(--serif);margin:6px 0 6px;letter-spacing:-.01em}
+.grad{background:linear-gradient(90deg,var(--bagrut),#7A5CFF,var(--exam));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lead{color:var(--muted);margin:0 0 22px;max-width:62ch}
+.seg{display:flex;gap:3px;background:color-mix(in srgb,var(--surface) 85%,transparent);border:1px solid var(--line);border-radius:14px;padding:3px;overflow-x:auto;scrollbar-width:none}
+.seg::-webkit-scrollbar{display:none}
+.seg button{flex:1 0 auto;min-width:56px;border:0;background:transparent;font-weight:600;font-size:15px;padding:9px 12px;border-radius:11px;color:var(--ink2);white-space:nowrap;transition:background .2s,color .2s}
+.seg button:hover{background:var(--sunk)}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--canvas)}
+.seg.sm button{font-size:14px;padding:7px 12px;min-width:auto}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:var(--r-lg);box-shadow:var(--shadow)}
+.card-h{display:flex;align-items:center;gap:10px;padding:16px 18px 0}
+.card-h h2{font-size:17px;font-weight:700;margin:0;display:flex;align-items:center;gap:8px}
+.card-h .sub{margin-inline-start:auto;color:var(--muted);font-size:13px}
+.card-b{padding:14px 18px 18px}
+.lift{transition:transform .25s,box-shadow .25s}
+@media (hover:hover){.lift:hover{transform:translateY(-3px);box-shadow:var(--shadow-h)}}
+.who{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:12px 0 0;font-size:14px;color:var(--muted)}
+.mj{display:inline-flex;align-items:center;gap:5px;background:var(--surface);border:1px solid var(--line);border-radius:999px;padding:3px 10px;font-weight:600;color:var(--ink2);font-size:13px}
+.linkb{border:0;background:none;color:var(--bagrut);font-weight:600;font-size:13.5px;padding:2px 4px}
+.ticket{position:relative;margin:16px 0 14px;display:grid;grid-template-columns:1fr auto;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-xl);box-shadow:var(--shadow);overflow:hidden;isolation:isolate}
+.ticket::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:6px;background:var(--k,var(--ink))}
+.ticket::after{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(600px 220px at 85% 0%,color-mix(in srgb,var(--k,var(--bagrut)) 14%,transparent),transparent 70%)}
+.t-main{padding:22px 26px 22px 18px;padding-inline-start:28px;min-width:0}
+.t-side{position:relative;padding:20px 26px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-inline-start:2px dashed var(--line);background:color-mix(in srgb,var(--sunk) 70%,transparent);min-width:190px}
+.t-side::before,.t-side::after{content:"";position:absolute;inset-inline-start:-12px;width:22px;height:22px;border-radius:50%;background:var(--canvas);border:1px solid var(--line)}
+.t-side::before{top:-12px}.t-side::after{bottom:-12px}
+.t-eyebrow{font-size:13px;font-weight:600;color:var(--muted);display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.t-title{font:700 clamp(25px,4.6vw,36px)/1.2 var(--sans);margin:8px 0 6px;letter-spacing:-.01em}
+.t-title .more{display:block;font-size:.6em;font-weight:600;color:var(--ink2);margin-top:4px}
+.t-when{color:var(--ink2);font-size:15px}
+.t-when span{color:var(--muted)}
+.ring{position:relative;width:132px;height:132px}
+.ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+.ring circle{fill:none;stroke-width:8}
+.ring .bg{stroke:var(--line2)}
+.ring .fg{stroke:var(--k,var(--ink));stroke-linecap:round;transition:stroke-dashoffset 1.2s cubic-bezier(.2,.8,.2,1)}
+.ring .c{position:absolute;inset:0;display:grid;place-content:center;text-align:center}
+.t-num{font:900 52px/.9 var(--serif);color:var(--k,var(--ink));font-variant-numeric:lining-nums}
+.t-unit{font-weight:600;color:var(--muted);font-size:13px;margin-top:4px}
+.live{display:flex;gap:6px;margin-top:12px;direction:rtl}
+.live div{min-width:44px;text-align:center;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px 6px}
+.live b{display:block;font:700 17px/1.2 var(--sans);font-variant-numeric:tabular-nums}
+.live span{font-size:10.5px;color:var(--muted)}
+.t-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:16px}
+.pill{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;padding:3px 9px;border-radius:999px;background:var(--soft);color:var(--c)}
+.k-bagrut{--c:var(--bagrut);--soft:var(--bagrut-s)} .k-mock{--c:var(--mock);--soft:var(--mock-s)} .k-exam{--c:var(--exam);--soft:var(--exam-s)} .k-event{--c:var(--event);--soft:var(--event-s)} .k-hol{--c:var(--hol);--soft:var(--hol-s)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid var(--line);background:var(--surface);color:var(--ink);font-weight:600;font-size:14px;padding:9px 15px;border-radius:11px;text-decoration:none;white-space:nowrap;transition:transform .15s,border-color .2s,box-shadow .2s}
+.btn:hover{border-color:var(--faint)}
+.btn:active{transform:scale(.97)}
+.btn.primary{background:var(--ink);border-color:var(--ink);color:var(--canvas)}
+.btn.glow{background:linear-gradient(135deg,var(--bagrut),#7A5CFF);border:0;color:#fff;box-shadow:0 8px 22px -8px color-mix(in srgb,var(--bagrut) 80%,transparent)}
+.btn.big{font-size:16px;padding:13px 18px;width:100%}
+.btn.ghost{border-color:transparent;background:transparent;color:var(--muted)}
+.btn.danger{color:var(--urgent);border-color:color-mix(in srgb,var(--urgent) 35%,var(--line))}
+.btn:disabled{opacity:.55;cursor:wait}
+.btn svg{width:17px;height:17px;flex:none}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px}
+.stat{position:relative;background:var(--surface);border:1px solid var(--line);border-radius:var(--r-md);padding:13px 15px;overflow:hidden}
+.stat::after{content:"";position:absolute;inset-inline-end:-18px;top:-18px;width:64px;height:64px;border-radius:50%;background:var(--soft,var(--line2));opacity:.8}
+.stat b{position:relative;display:block;font:700 28px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+.stat span{position:relative;font-size:13px;color:var(--muted)}
+.year{padding:16px 18px 20px}
+.year .hd{display:flex;align-items:baseline;gap:4px 10px;margin-bottom:22px;flex-wrap:wrap}
+.year .hd b{font-size:15px}
+.year .hd span{margin-inline-start:auto;color:var(--muted);font-size:13px}
+.track{position:relative;height:10px;border-radius:999px;background:var(--line2)}
+.track .fill{position:absolute;inset-block:0;inset-inline-start:0;border-radius:999px;background:linear-gradient(90deg,var(--exam),var(--bagrut));width:0;transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.track .tk{position:absolute;top:50%;width:9px;height:9px;border-radius:50%;background:var(--c);border:2px solid var(--surface);transform:translate(50%,-50%);z-index:1}
+.track .tk.past{opacity:.35}
+.track .now{position:absolute;top:-24px;transform:translateX(50%);font-size:11px;font-weight:700;color:var(--urgent);white-space:nowrap}
+.track .now::after{content:"";position:absolute;top:18px;left:50%;width:2px;height:20px;background:var(--urgent);transform:translateX(-50%)}
+.year .mrow{display:flex;justify-content:space-between;font-size:11px;color:var(--faint);margin-top:8px}
+.banner{position:relative;display:flex;align-items:center;gap:16px;padding:18px 20px;border-radius:var(--r-lg);background:linear-gradient(120deg,#13214A,#2A2F8C 55%,#0D5E52);color:#fff;margin-bottom:18px;overflow:hidden}
+.banner::after{content:"";position:absolute;inset:0;background:radial-gradient(300px 120px at 10% 120%,rgba(255,255,255,.18),transparent);pointer-events:none}
+.banner .ic{width:44px;height:44px;border-radius:13px;background:rgba(255,255,255,.14);display:grid;place-items:center;flex:none;animation:ring 3s ease-in-out infinite}
+.banner .ic svg{width:22px;height:22px}
+@keyframes ring{0%,80%,100%{transform:rotate(0)}84%{transform:rotate(-14deg)}88%{transform:rotate(12deg)}92%{transform:rotate(-8deg)}96%{transform:rotate(4deg)}}
+.banner b{display:block;font-size:16px}
+.banner span{font-size:14px;opacity:.8}
+.banner .btn{margin-inline-start:auto;background:#fff;color:#13214A;border:0;position:relative;z-index:1}
+.toolbar{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:14px 16px;border-bottom:1px solid var(--line2)}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line);background:var(--surface);font-size:13px;font-weight:600;padding:5px 11px;border-radius:999px;color:var(--ink2);transition:all .2s}
+.chip i{width:8px;height:8px;border-radius:50%;background:var(--c)}
+.chip[aria-pressed="false"]{color:var(--faint);background:transparent}
+.chip[aria-pressed="false"] i{background:transparent;box-shadow:inset 0 0 0 1.5px var(--c)}
+.toolbar .seg{margin-inline-start:auto}
+.list .mo{position:sticky;top:calc(env(safe-area-inset-top,0px) + 59px);z-index:4;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(8px);padding:12px 18px 8px;font:700 21px var(--serif);border-bottom:1px solid var(--line2);display:flex;align-items:baseline;gap:10px}
+.list .mo small{font:500 13px var(--sans);color:var(--muted)}
+.day{display:grid;grid-template-columns:58px 1fr;gap:14px;padding:12px 18px;border-bottom:1px solid var(--line2);transition:background .2s}
+.day:last-child{border-bottom:0}
+.day:hover{background:var(--sunk)}
+.day.past{opacity:.45}
+.day.today{background:color-mix(in srgb,var(--urgent) 7%,transparent)}
+.day.sat .dn i{color:var(--event)}
+.rv{opacity:0;transform:translateY(10px);transition:opacity .5s ease,transform .5s ease}
+.rv.in{opacity:1;transform:none}
+.dn{text-align:center;padding-top:2px}
+.dn b{display:block;font:700 24px/1 var(--sans);font-variant-numeric:tabular-nums}
+.dn i{font-style:normal;font-size:12px;color:var(--muted);font-weight:600}
+.day.today .dn b{color:var(--urgent)}
+.dmeta{font-size:12.5px;color:var(--muted);display:flex;gap:8px;align-items:center;margin-bottom:2px}
+.soon{color:var(--urgent);font-weight:700}
+.it{display:flex;align-items:center;gap:8px 10px;flex-wrap:wrap;padding:6px 0}
+.it .bar{width:4px;align-self:stretch;border-radius:2px;background:var(--c);flex:none}
+.it .tt{font-weight:600;font-size:16px}
+.it.ev .emo{width:28px;height:28px;border-radius:9px;background:var(--soft);display:grid;place-items:center;font-size:15px;flex:none}
+.it.ev .tt{font-weight:600;color:var(--ink2);font-size:15px}
+.it .mtag{font-size:11.5px;font-weight:700;color:var(--ink2);background:var(--sunk);border:1px solid var(--line);border-radius:6px;padding:0 6px}
+.cls{display:inline-flex;gap:4px;margin-inline-start:auto}
+.cls span{font-size:11.5px;font-weight:700;color:var(--muted);border:1px solid var(--line);border-radius:6px;padding:0 6px}
+.empty{padding:40px 18px;text-align:center;color:var(--muted)}
+.mhead{display:flex;align-items:center;gap:8px;padding:14px 16px 6px}
+.mhead h3{font:700 21px var(--serif);margin:0;flex:1}
+.icbtn{width:36px;height:36px;border-radius:11px;border:1px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none}
+.icbtn svg{width:18px;height:18px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:5px;padding:6px 12px 12px}
+.grid .wd{font-size:12px;color:var(--muted);text-align:center;font-weight:600;padding:4px 0}
+.grid .wd:nth-child(7){color:var(--event)}
+.cell{min-height:80px;border:1px solid var(--line2);border-radius:12px;padding:6px;background:var(--surface);text-align:start;display:flex;flex-direction:column;gap:3px;position:relative;transition:transform .15s,border-color .2s}
+.cell:hover{border-color:var(--faint)}
+.cell.sat{background:color-mix(in srgb,var(--event) 6%,var(--surface))}
+.cell.out{background:transparent;border-color:transparent;color:var(--faint)}
+.cell .n{font-size:13px;font-weight:600;font-variant-numeric:tabular-nums;display:flex;justify-content:space-between;align-items:center}
+.cell .n em{font-style:normal;font-size:13px}
+.cell.today .n span{background:var(--urgent);color:#fff;border-radius:999px;min-width:24px;height:24px;display:grid;place-items:center;margin:-2px}
+.cell[aria-pressed="true"]{border-color:var(--ink);box-shadow:inset 0 0 0 1px var(--ink)}
+.cell .lab{font-size:11px;font-weight:600;line-height:1.25;padding:2px 5px;border-radius:5px;background:var(--soft);color:var(--c);overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.cell .dots{display:none;gap:3px;margin-top:auto}
+.cell .dots i{width:7px;height:7px;border-radius:50%;background:var(--c)}
+.dayp{margin:0 12px 14px;border:1px solid var(--line);border-radius:var(--r-md);padding:12px 14px;background:var(--sunk);animation:pop .25s ease}
+@keyframes pop{from{opacity:0;transform:translateY(-4px)}}
+.dayp h4{margin:0 0 4px;font-size:15px}
+@media (max-width:640px){.cell{min-height:54px;padding:5px}.cell .lab{display:none}.cell .dots{display:flex}}
+.field{margin-bottom:16px}
+.field > label,.field > .lab{display:block;font-weight:600;font-size:14px;margin-bottom:7px}
+.input{width:100%;padding:12px 14px;border:1px solid var(--line);border-radius:12px;background:var(--surface);font-size:16px;transition:border-color .2s,box-shadow .2s}
+.input:focus{outline:none;border-color:var(--focus);box-shadow:0 0 0 4px color-mix(in srgb,var(--focus) 16%,transparent)}
+.help{font-size:13px;color:var(--muted);margin-top:6px}
+.err{color:var(--urgent);font-size:14px;font-weight:600;min-height:1.4em;margin:8px 0 0}
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.majors{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.mjb{display:flex;align-items:center;gap:8px;border:1.5px solid var(--line);background:var(--surface);border-radius:12px;padding:10px 12px;font-weight:600;font-size:14px;text-align:start;transition:all .2s}
+.mjb .e{font-size:20px;line-height:1;transition:transform .3s}
+.mjb[aria-pressed="true"]{border-color:var(--bagrut);background:var(--bagrut-s);color:var(--ink)}
+.mjb[aria-pressed="true"] .e{transform:scale(1.2) rotate(-8deg)}
+.join{display:grid;grid-template-columns:1fr 1.05fr;gap:20px;align-items:start}
+.perks{list-style:none;padding:0;margin:0;display:grid;gap:14px}
+.perks li{display:flex;gap:12px;align-items:flex-start}
+.perks .ic{width:40px;height:40px;border-radius:12px;background:var(--surface);border:1px solid var(--line);display:grid;place-items:center;flex:none;box-shadow:var(--shadow)}
+.perks .ic svg{width:19px;height:19px;color:var(--bagrut)}
+.perks b{display:block;font-size:15px}
+.perks span{font-size:14px;color:var(--muted)}
+.prof{display:flex;align-items:center;gap:14px;margin:8px 0 18px}
+.avatar{width:58px;height:58px;border-radius:18px;background:linear-gradient(135deg,var(--bagrut),#7A5CFF 60%,var(--exam));color:#fff;display:grid;place-items:center;font:700 24px var(--sans);flex:none;box-shadow:0 10px 24px -10px color-mix(in srgb,var(--bagrut) 80%,transparent)}
+.prof h1{font:900 clamp(25px,4vw,34px)/1.1 var(--serif);margin:0}
+.prof p{margin:5px 0 0;color:var(--muted);font-size:14px;display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.me-grid{display:grid;grid-template-columns:1.25fr 1fr;gap:16px;align-items:start}
+.me-grid > div{display:grid;gap:16px}
+.prog{height:10px;background:var(--line2);border-radius:999px;overflow:hidden;margin:4px 0 10px}
+.prog i{display:block;height:100%;background:linear-gradient(90deg,var(--exam),#3ACF9F);border-radius:999px;transition:width .6s cubic-bezier(.2,.8,.2,1)}
+.task{display:flex;align-items:center;gap:12px;padding:10px 0;border-top:1px solid var(--line2)}
+.task:first-of-type{border-top:0}
+.task .when{width:54px;text-align:center;flex:none}
+.task .when b{display:block;font-size:18px;line-height:1.1}
+.task .when i{font-style:normal;font-size:11.5px;color:var(--muted)}
+.task .what{flex:1;min-width:0}
+.task .what b{display:block;font-size:15px}
+.task .what span{font-size:12.5px;color:var(--muted)}
+.check{width:36px;height:36px;border-radius:11px;border:1.5px solid var(--line);background:var(--surface);display:grid;place-items:center;flex:none;transition:all .2s}
+.check svg{width:18px;height:18px;opacity:0;transform:scale(.4);transition:all .25s cubic-bezier(.3,1.6,.5,1)}
+.check[aria-pressed="true"]{background:var(--ok);border-color:var(--ok);color:#fff}
+.check[aria-pressed="true"] svg{opacity:1;transform:none}
+.task.done .what b{text-decoration:line-through;text-decoration-color:var(--faint);color:var(--muted)}
+.row{display:flex;align-items:center;gap:12px;padding:11px 0;border-top:1px solid var(--line2)}
+.row:first-child{border-top:0}
+.row .lbl{flex:1}
+.row .lbl b{display:block;font-weight:600;font-size:15px}
+.row .lbl span{font-size:13px;color:var(--muted)}
+.switch{position:relative;width:48px;height:29px;border-radius:999px;border:0;background:var(--line);flex:none;transition:background .25s}
+.switch::after{content:"";position:absolute;top:3px;inset-inline-start:3px;width:23px;height:23px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.25);transition:inset-inline-start .25s cubic-bezier(.3,1.4,.5,1)}
+.switch[aria-checked="true"]{background:var(--ok)}
+.switch[aria-checked="true"]::after{inset-inline-start:22px}
+.switch:disabled{opacity:.45;cursor:not-allowed}
+.calbtns{display:grid;gap:8px}
+.calbtns .btn{justify-content:flex-start}
+.danger-zone{display:flex;gap:8px;flex-wrap:wrap}
+.kpis{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:16px}
+.bars{display:grid;gap:9px}
+.bars .b{display:grid;grid-template-columns:120px 1fr 30px;gap:10px;align-items:center;font-size:14px}
+.bars .t{height:10px;border-radius:999px;background:var(--line2);overflow:hidden}
+.bars .t i{display:block;height:100%;border-radius:999px;background:linear-gradient(90deg,var(--bagrut),#7A5CFF);width:0;transition:width 1s cubic-bezier(.2,.8,.2,1)}
+.tbl{width:100%;border-collapse:collapse;font-size:14px}
+.tbl th{text-align:start;font-size:12.5px;color:var(--muted);font-weight:600;padding:10px 12px;background:var(--sunk);position:sticky;top:0}
+.tbl td{padding:10px 12px;border-top:1px solid var(--line2);vertical-align:middle}
+.tbl tr:hover td{background:var(--sunk)}
+.tblw{max-height:520px;overflow:auto;border-top:1px solid var(--line2)}
+.adm-tools{display:flex;gap:8px;flex-wrap:wrap;align-items:center;padding:14px 18px}
+.adm-tools .input{width:auto;flex:1;min-width:180px;padding:9px 12px;font-size:15px}
+.adm-tools select{padding:9px 12px;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+.prev{display:grid;gap:8px}
+.prev .p{display:flex;gap:12px;align-items:center;padding:9px 12px;border:1px solid var(--line2);border-radius:12px}
+.prev .p b{font-size:20px;min-width:34px;text-align:center;color:var(--bagrut)}
+.prev .p span{font-size:13px;color:var(--muted)}
+#onb{width:min(560px,calc(100% - 24px))}
+.onb{padding:26px 24px 22px;position:relative;overflow:hidden}
+.onb::before{content:"";position:absolute;inset:-40% -20% auto;height:260px;background:radial-gradient(closest-side,color-mix(in srgb,var(--glow1) 45%,transparent),transparent);pointer-events:none}
+.onb .steps{display:flex;gap:6px;margin-bottom:18px;position:relative}
+.onb .steps i{height:4px;flex:1;border-radius:9px;background:var(--line2);overflow:hidden}
+.onb .steps i.on::after{content:"";display:block;height:100%;background:linear-gradient(90deg,var(--bagrut),#7A5CFF);animation:fillx .5s ease forwards}
+@keyframes fillx{from{width:0}to{width:100%}}
+.onb h2{font:900 30px/1.15 var(--serif);margin:0 0 6px;position:relative}
+.onb p{color:var(--muted);margin:0 0 18px;position:relative}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.tile{border:1.5px solid var(--line);background:var(--surface);border-radius:16px;padding:18px 6px;font:700 22px var(--sans);transition:all .2s}
+.tile:hover{border-color:var(--bagrut);transform:translateY(-2px)}
+.tile[aria-pressed="true"]{border-color:var(--bagrut);background:var(--bagrut-s);box-shadow:0 0 0 3px color-mix(in srgb,var(--bagrut) 22%,transparent)}
+.onb .foot{display:flex;gap:8px;align-items:center;margin-top:20px}
+.onb .foot .btn.glow{margin-inline-start:auto}
+.slide{animation:slidein .35s cubic-bezier(.2,.8,.2,1)}
+@keyframes slidein{from{opacity:0;transform:translateX(-24px)}}
+.toast{position:fixed;left:50%;bottom:calc(22px + env(safe-area-inset-bottom,0px));transform:translate(-50%,24px) scale(.96);opacity:0;background:var(--ink);color:var(--canvas);padding:11px 18px;border-radius:14px;font-weight:600;font-size:14px;z-index:60;pointer-events:none;transition:all .3s cubic-bezier(.2,.8,.2,1);box-shadow:0 14px 34px rgba(0,0,0,.28);max-width:calc(100% - 32px)}
+.toast.on{opacity:1;transform:translate(-50%,0) scale(1)}
+dialog{border:0;border-radius:var(--r-xl);padding:0;background:var(--surface);color:var(--ink);width:min(440px,calc(100% - 28px));box-shadow:0 30px 80px rgba(0,0,0,.35)}
+dialog[open]{animation:dlg .3s cubic-bezier(.2,.8,.2,1)}
+@keyframes dlg{from{opacity:0;transform:translateY(16px) scale(.97)}}
+dialog::backdrop{background:rgba(6,12,24,.5);backdrop-filter:blur(3px)}
+.dlg-h{display:flex;align-items:center;padding:16px 18px 0}
+.dlg-h h3{margin:0;font-size:17px;flex:1}
+#fx{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:70}
+.skel{height:140px;border-radius:var(--r-xl);background:linear-gradient(90deg,var(--line2),var(--surface),var(--line2));background-size:200% 100%;animation:sh 1.2s infinite}
+@keyframes sh{to{background-position:-200% 0}}
+.intro > *{animation:rise .6s cubic-bezier(.2,.8,.2,1) both}
+.intro > *:nth-child(2){animation-delay:.06s}.intro > *:nth-child(3){animation-delay:.12s}.intro > *:nth-child(4){animation-delay:.18s}.intro > *:nth-child(5){animation-delay:.24s}.intro > *:nth-child(6){animation-delay:.3s}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}}
+footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);font-size:13px}
+@media (max-width:760px){
+  .join,.me-grid{grid-template-columns:1fr}
+  .ticket{grid-template-columns:1fr}
+  .t-side{flex-direction:row;gap:16px;justify-content:flex-start;border-inline-start:0;border-top:2px dashed var(--line);padding:14px 22px;min-width:0}
+  .t-side::before,.t-side::after{top:-12px;bottom:auto}
+  .t-side::before{inset-inline-start:-12px}.t-side::after{inset-inline-start:auto;inset-inline-end:-12px}
+  .ring{width:96px;height:96px}.t-num{font-size:38px}
+  .live{margin-top:0}
+  .banner{flex-wrap:wrap}.banner .btn{width:100%;margin:0}
+  .nav a{padding:7px 10px;font-size:13.5px}
+  .toolbar .seg{margin-inline-start:0;width:100%}
+  .kpis{grid-template-columns:repeat(2,1fr)}
+  .majors{grid-template-columns:repeat(2,1fr)}
+  .tiles{grid-template-columns:repeat(2,1fr)}
+  .bars .b{grid-template-columns:100px 1fr 26px}
+  .brand span:not(.mark){display:none}
+}
+@media (max-width:420px){.stat b{font-size:23px}.stat{padding:11px}.day{grid-template-columns:46px 1fr;padding:12px 14px}.cls{margin-inline-start:0;width:100%}.live div{min-width:38px}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<header class="top"><div class="in">
+  <a class="brand" href="#/" aria-label="לוח מבחנים י״ב, לדף הראשי"><span class="mark">י״ב</span><span><b>לוח מבחנים</b><small>שכבת י״ב · תשפ״ז</small></span></a>
+  <nav class="nav" aria-label="ניווט ראשי">
+    <a href="#/" data-r="home">הלוח</a>
+    <a href="#/me" data-r="me" id="navMe">האזור שלי</a>
+    <a href="#/admin" data-r="admin" id="navAdmin" hidden>ניהול</a>
+  </nav>
+  <button class="themeb" id="themeB" type="button"></button>
+</div></header>
+<main class="wrap" id="app"><div class="skel" aria-hidden="true"></div></main>
+<footer class="ft">נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<dialog id="dlg"></dialog>
+<dialog id="onb" aria-label="התאמה אישית"></dialog>
+<canvas id="fx" aria-hidden="true"></canvas>
+<script>
+(()=>{
+const CLASSES=['יב1','יב2','יב3','יב4'];
+const KIND={bagrut:'בגרות',mock:'מתכונת',exam:'מבחן',event:'אירוע'};
+const MAJORS={eretz:['ארץ','🗺️'],agri:['חקלאות','🌱'],bio:['ביולוגיה','🧬'],phys:['פיזיקה','⚛️'],cs:['מדעי המחשב','💻'],bees:['כוורות','🐝']};
+const MAJOR_OF={'בגרות בארץ':'eretz','סיור ארץ':'eretz','חפירות ארכיאולוגיות מגמת ארץ':'eretz','בגרות בחקלאות':'agri','בגרות ביולוגיה':'bio','בגרות ביולוגיה מעבדה':'bio','בגרות בפיזיקה':'phys','בגרות בפיזיקה מעבדה':'phys','בגרות במדמח ושפות':'cs','מבחן מחשבים':'cs'};
+const MONTHS=['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
+const WD=['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'];
+const SITE=location.origin;
+const EMO=[[/שבת/,'🕯️'],[/ראש השנה/,'🍎'],[/כיפור/,'🤍'],[/סוכות|הושענא|שמחת תורה/,'🌿'],[/חנוכה/,'🕎'],[/בשבט/,'🌳'],[/פורים|אסתר/,'🎭'],[/פסח/,'🍷'],[/שבועות/,'🌾'],[/השואה|הזיכרון/,'🕯️'],[/העצמאות/,'🇮🇱'],[/ירושלים/,'🏛️'],[/בעומר/,'🔥'],[/צום|עשרה בטבת|גדליה/,'⏳'],[/הורים/,'👪'],[/סיור|מסע|חפירות/,'🥾'],[/הכתרה/,'🎓'],[/תעודות/,'📜'],[/שולחנות/,'💬']];
+const emo=t=>{for(const[r,e]of EMO)if(r.test(t))return e;return '📌'};
+const isHoliday=t=>/שבת|ראש השנה|כיפור|סוכות|הושענא|שמחת תורה|חנוכה|בשבט|פורים|אסתר|פסח|שבועות|השואה|הזיכרון|העצמאות|ירושלים|בעומר|צום|גדליה|טבת/.test(t);
+const I=(p,w=2)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
+const ICON={
+  bell:I('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'),
+  cal:I('<rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/>'),
+  user:I('<circle cx="12" cy="8" r="4"/><path d="M4 21a8 8 0 0 1 16 0"/>'),
+  check:I('<path d="M20 6 9 17l-5-5"/>',3),
+  prev:I('<path d="m9 18 6-6-6-6"/>'), next:I('<path d="m15 18-6-6 6-6"/>'),
+  x:I('<path d="M18 6 6 18M6 6l12 12"/>'),
+  copy:I('<rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/>'),
+  mail:I('<rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-10 6L2 7"/>'),
+  target:I('<circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1"/>'),
+  sun:I('<circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/>'),
+  moon:I('<path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>'),
+  auto:I('<circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor"/>'),
+  edit:I('<path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/>'),
+  shield:I('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'),
+  download:I('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>'),
+  trash:I('<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>'),
+  send:I('<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>')
+};
+const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
+let DATA=[];
+const S={
+  cls:LS.get('yb.cls','all'), majors:LS.get('yb.majors',[]),
+  k:LS.get('yb.k2',{bagrut:true,mock:true,exam:true,event:true}),
+  past:false, view:LS.get('yb.view','list'), month:null, selDay:null,
+  token:LS.get('yb.token',null), me:LS.get('yb.me',null),
+  prep:new Set(LS.get('yb.prep',[])), theme:LS.get('yb.theme','auto')
+};
+const save=()=>{LS.set('yb.cls',S.cls);LS.set('yb.majors',S.majors);LS.set('yb.k2',S.k);LS.set('yb.view',S.view);LS.set('yb.prep',[...S.prep])};
+const today=new Date();today.setHours(0,0,0,0);
+const iso=d=>`${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;
+const TODAY=iso(today);
+const dt=s=>{const[y,m,d]=s.split('-').map(Number);return new Date(y,m-1,d)};
+const diff=s=>Math.round((dt(s)-today)/864e5);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const pretty=s=>{const d=dt(s);return `${d.getDate()} ב${MONTHS[d.getMonth()]}`};
+const inWords=n=>n===0?'היום':n===1?'מחר':n===2?'מחרתיים':`בעוד ${n} ימים`;
+const $=s=>document.querySelector(s);
+const app=$('#app');
+const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let timers=[];const clearTimers=()=>{timers.forEach(clearInterval);timers=[]};
+function toast(t){const el=$('#toast');el.textContent=t;el.classList.add('on');clearTimeout(toast._t);toast._t=setTimeout(()=>el.classList.remove('on'),2600)}
+async function api(path,opts={}){
+  const r=await fetch(path,{headers:{'content-type':'application/json'},...opts,body:opts.body?JSON.stringify(opts.body):undefined});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok||!j.ok){const e=new Error(j.error||'error');e.status=r.status;throw e}
+  return j;
+}
+const majorOf=t=>MAJOR_OF[t]||null;
+const majorsNow=()=>S.majors||[];
+const forCls=(i,c=S.cls,mj=majorsNow())=>(c==='all'||i.c.includes(c))&&(!mj.length||!majorOf(i.t)||mj.includes(majorOf(i.t)));
+const evKind=i=>isHoliday(i.t)?'hol':'event';
+const clsCode=c=>CLASSES.indexOf(c)+1;
+const calUrls=(c,mj=[])=>{const http=`${SITE}/api/calendar?c=${clsCode(c)}${mj.length?'&m='+mj.join(','):''}`;const webcal=http.replace(/^https?:/,'webcal:');return{http,webcal,google:'https://calendar.google.com/calendar/render?cid='+encodeURIComponent(webcal)}};
+function applyTheme(){if(S.theme==='auto')document.documentElement.removeAttribute('data-theme');else document.documentElement.dataset.theme=S.theme;const b=$('#themeB');b.innerHTML=S.theme==='dark'?ICON.moon:S.theme==='light'?ICON.sun:ICON.auto;b.setAttribute('aria-label','מצב תצוגה: '+(S.theme==='dark'?'כהה':S.theme==='light'?'בהיר':'אוטומטי'))}
+$('#themeB').onclick=()=>{S.theme=S.theme==='auto'?'light':S.theme==='light'?'dark':'auto';LS.set('yb.theme',S.theme);applyTheme();toast(S.theme==='dark'?'מצב כהה':S.theme==='light'?'מצב בהיר':'לפי הגדרות המכשיר')};
+applyTheme();
+function countUp(el,to,dur=900){if(RM||!el){if(el)el.textContent=to;return}const t0=performance.now();const step=t=>{const p=Math.min(1,(t-t0)/dur);el.textContent=Math.round(to*(1-Math.pow(1-p,3)));if(p<1)requestAnimationFrame(step)};requestAnimationFrame(step)}
+function reveal(root){const els=root.querySelectorAll('.rv');if(RM||!('IntersectionObserver' in window)){els.forEach(e=>e.classList.add('in'));return}const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{rootMargin:'0px 0px -6% 0px'});els.forEach((e,i)=>{e.style.transitionDelay=Math.min(i,8)*35+'ms';io.observe(e)})}
+const fx=$('#fx'),ctx=fx.getContext('2d');let parts=[];
+function sizeFx(){fx.width=innerWidth*devicePixelRatio;fx.height=innerHeight*devicePixelRatio}sizeFx();addEventListener('resize',sizeFx);
+function confetti(x,y,n=60){if(RM)return;const cols=['#2F52D6','#7A5CFF','#0E8A70','#F4B65E','#E0482F','#5DDDBC'];const start=!parts.length;for(let i=0;i<n;i++){const a=Math.random()*Math.PI*2,v=4+Math.random()*7;parts.push({x:x*devicePixelRatio,y:y*devicePixelRatio,vx:Math.cos(a)*v,vy:Math.sin(a)*v-6,r:3+Math.random()*4,c:cols[i%cols.length],l:70+Math.random()*30,rot:Math.random()*6,s:Math.random()>.5})}if(start)requestAnimationFrame(tick)}
+function tick(){ctx.clearRect(0,0,fx.width,fx.height);parts=parts.filter(p=>p.l>0);for(const p of parts){p.vy+=.35;p.vx*=.98;p.x+=p.vx*devicePixelRatio*.6;p.y+=p.vy*devicePixelRatio*.6;p.l--;p.rot+=.2;ctx.save();ctx.globalAlpha=Math.min(1,p.l/30);ctx.translate(p.x,p.y);ctx.rotate(p.rot);ctx.fillStyle=p.c;if(p.s)ctx.fillRect(-p.r,-p.r/2,p.r*2,p.r);else{ctx.beginPath();ctx.arc(0,0,p.r*.7,0,7);ctx.fill()}ctx.restore()}if(parts.length)requestAnimationFrame(tick);else ctx.clearRect(0,0,fx.width,fx.height)}
+function route(){
+  clearTimers();
+  let h=location.hash.replace(/^#/,'')||'/';
+  const [p,q]=h.split('?');
+  const params=new URLSearchParams(q||'');
+  if(params.get('t')){S.token=params.get('t');LS.set('yb.token',S.token);S.me=null;LS.set('yb.onb',true);history.replaceState(null,'','#/me');toast('נכנסת לאזור האישי')}
+  const r=p.replace(/\/+$/,'')||'/';
+  document.querySelectorAll('.nav a').forEach(a=>a.removeAttribute('aria-current'));
+  const cur=r==='/admin'?'admin':(r==='/me'||r==='/join')?'me':'home';
+  const link=document.querySelector(`.nav a[data-r="${cur}"]`);if(link)link.setAttribute('aria-current','page');
+  updateNav();
+  if(r==='/join')renderJoin();else if(r==='/me')renderMe();else if(r==='/admin')renderAdmin();else renderHome();
+  window.scrollTo({top:0});
+}
+function updateNav(){
+  $('#navMe').innerHTML=S.token&&S.me?`<span class="av">${esc(S.me.name.trim()[0]||'?')}</span>האזור שלי`:'האזור שלי';
+  $('#navAdmin').hidden=!(S.me&&S.me.isAdmin);
+}
+function syncFromMe(){if(S.me){S.majors=S.me.majors||[];if(!LS.get('yb.clsManual',false))S.cls=S.me.cls;save()}}
+function onboarding(force){
+  if(!force&&(LS.get('yb.onb',false)||S.token))return;
+  const dlg=$('#onb');let step=1,cls=S.cls!=='all'?S.cls:null,mj=[...S.majors];
+  const draw=()=>{
+    dlg.innerHTML=`<div class="onb"><div class="steps"><i class="on"></i><i class="${step===2?'on':''}"></i></div><div class="slide">${step===1?`
+      <h2>ברוכים הבאים 👋</h2><p>כדי להראות לך רק את מה שרלוונטי: באיזו כיתה את/ה?</p>
+      <div class="tiles">${CLASSES.map(c=>`<button type="button" class="tile" data-c="${c}" aria-pressed="${cls===c}">${c}</button>`).join('')}</div>
+      <div class="foot"><button class="btn ghost" type="button" data-skip>רק להציץ בלוח</button><button class="btn glow" type="button" data-next ${cls?'':'disabled'}>המשך</button></div>`:`
+      <h2>מה המגמות שלך?</h2><p>אפשר לבחור כמה. נציג רק את הבגרויות, הסיורים והמבחנים של המגמות שבחרת.</p>
+      <div class="majors">${Object.entries(MAJORS).map(([k,[n,e]])=>`<button type="button" class="mjb" data-m="${k}" aria-pressed="${mj.includes(k)}"><span class="e">${e}</span>${n}</button>`).join('')}</div>
+      <div class="foot"><button class="btn ghost" type="button" data-back>חזרה</button><button class="btn glow" type="button" data-done>${mj.length?'יאללה, לוח שלי':'בלי מגמה, להציג הכול'}</button></div>`}</div></div>`;
+    dlg.querySelectorAll('[data-c]').forEach(b=>b.onclick=()=>{cls=b.dataset.c;draw()});
+    dlg.querySelectorAll('[data-m]').forEach(b=>b.onclick=()=>{const k=b.dataset.m;mj=mj.includes(k)?mj.filter(x=>x!==k):[...mj,k];draw()});
+    const q=s=>dlg.querySelector(s);
+    if(q('[data-next]'))q('[data-next]').onclick=()=>{step=2;draw()};
+    if(q('[data-back]'))q('[data-back]').onclick=()=>{step=1;draw()};
+    if(q('[data-skip]'))q('[data-skip]').onclick=()=>{LS.set('yb.onb',true);dlg.close()};
+    if(q('[data-done]'))q('[data-done]').onclick=async e=>{
+      S.cls=cls;S.majors=mj;LS.set('yb.onb',true);LS.set('yb.clsManual',false);save();dlg.close();
+      if(S.token&&S.me)await patchMe({cls,majors:mj},'העדפות נשמרו');
+      const r=e.target.getBoundingClientRect();confetti(r.left+r.width/2,r.top,80);route();
+    };
+  };
+  draw();dlg.showModal();
+}
+function upcoming(c=S.cls,mj=majorsNow()){const out=[];for(const d of DATA){if(diff(d.d)<0)continue;const its=d.items.filter(i=>i.k!=='event'&&forCls(i,c,mj));if(its.length)out.push({...d,items:its})}return out}
+function ticketHtml(nx,label,showActions){
+  const n=diff(nx.d),k=nx.items[0].k,m0=majorOf(nx.items[0].t);
+  const cn=i=>S.cls==='all'&&i.c.length<4?` (${i.c.join(', ')})`:'';
+  const titles=nx.items.map((i,ix)=>ix===0?esc(i.t):`<span class="more">+ ${esc(i.t)}${cn(i)}</span>`).join('');
+  const C=2*Math.PI*56,frac=Math.max(.04,1-Math.min(n,30)/30);
+  return `<section class="ticket lift" style="--k:var(--${k})" aria-label="${label}">
+    <div class="t-main">
+      <div class="t-eyebrow">${label} <span class="pill k-${k}">${KIND[k]}</span>${m0?`<span class="mj">${MAJORS[m0][1]} ${MAJORS[m0][0]}</span>`:''}</div>
+      <div class="t-title">${titles}</div>
+      <div class="t-when">יום ${nx.w}, ${pretty(nx.d)} <span>· ${esc(nx.h)}${S.cls==='all'&&nx.items[0].c.length<4?' · '+nx.items[0].c.join(', '):''}</span></div>
+      <div class="live" id="live" aria-hidden="true"></div>
+      ${showActions?`<div class="t-actions"><button class="btn" type="button" data-act="cal">${ICON.cal}חיבור ליומן</button>${S.token?'':`<a class="btn glow" href="#/join">${ICON.bell}תזכורת במייל</a>`}</div>`:''}
+    </div>
+    <div class="t-side"><div class="ring"><svg viewBox="0 0 128 128"><circle class="bg" cx="64" cy="64" r="56"/><circle class="fg" cx="64" cy="64" r="56" stroke-dasharray="${C}" stroke-dashoffset="${C}" data-off="${C*(1-frac)}"/></svg><div class="c"><div class="t-num" data-n="${n}">${n===0?'היום':0}</div>${n===0?'':`<div class="t-unit">${n===1?'יום':'ימים'}</div>`}</div></div></div>
+  </section>`;
+}
+function startTicket(nx){
+  const fg=app.querySelector('.ring .fg');if(fg)requestAnimationFrame(()=>requestAnimationFrame(()=>fg.style.strokeDashoffset=fg.dataset.off));
+  const num=app.querySelector('.t-num[data-n]');if(num&&+num.dataset.n>0)countUp(num,+num.dataset.n);
+  const live=$('#live');if(!live)return;
+  const target=dt(nx.d);target.setHours(8,30,0,0);
+  const tickL=()=>{let s=Math.max(0,Math.floor((target-Date.now())/1000));const d=Math.floor(s/86400);s%=86400;const h=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60);s%=60;
+    live.innerHTML=[[d,'ימים'],[h,'שעות'],[m,'דקות'],[s,'שניות']].map(([v,l])=>`<div><b>${String(v).padStart(2,'0')}</b><span>${l}</span></div>`).join('')};
+  tickL();timers.push(setInterval(tickL,1000));
+}
+function yearHtml(){
+  const start=dt('2026-09-01'),end=dt('2027-06-30'),span=end-start;
+  const pos=s=>Math.max(0,Math.min(100,(dt(s)-start)/span*100));
+  const now=Math.max(0,Math.min(100,(today-start)/span*100));
+  const ticks=[];for(const d of DATA)for(const i of d.items)if((i.k==='bagrut'||i.k==='mock')&&forCls(i))ticks.push(`<i class="tk k-${i.k}${diff(d.d)<0?' past':''}" style="inset-inline-start:${pos(d.d)}%" title="${esc(i.t)} · ${pretty(d.d)}"></i>`);
+  const months=['ספט׳','נוב׳','ינו׳','מרץ','מאי','יוני'];
+  return `<section class="card year lift"><div class="hd"><b>ציר השנה</b><span>${Math.round(now)}% מהשנה מאחוריכם · נקודות = בגרויות ומתכונות</span></div>
+    <div class="track"><div class="fill" data-w="${now}"></div>${ticks.join('')}<div class="now" style="inset-inline-start:${now}%">היום</div></div>
+    <div class="mrow">${months.map(m=>`<span>${m}</span>`).join('')}</div></section>`;
+}
+function renderHome(){
+  const up=upcoming(),nx=up[0];
+  const wk=up.filter(d=>diff(d.d)<=7).reduce((a,d)=>a+d.items.length,0);
+  const mo=up.filter(d=>diff(d.d)<=30).reduce((a,d)=>a+d.items.length,0);
+  const bag=up.reduce((a,d)=>a+d.items.filter(i=>i.k==='bagrut').length,0);
+  const segBtns=[['all','כל השכבה'],...CLASSES.map(c=>[c,c])].map(([v,l])=>`<button type="button" data-cls="${v}" aria-pressed="${S.cls===v}">${l}${S.me&&S.me.cls===v?' ★':''}</button>`).join('');
+  const mj=majorsNow();
+  const who=`<div class="who">${mj.length?`המגמות שלי: ${mj.map(m=>`<span class="mj">${MAJORS[m][1]} ${MAJORS[m][0]}</span>`).join('')}`:'מציג את כל המגמות'}<button class="linkb" type="button" data-onb>${ICON.edit.replace('<svg','<svg width="14" height="14" style="vertical-align:-2px"')} שינוי</button></div>`;
+  const ticket=nx?ticketHtml(nx,'המבחן הבא'+(S.cls==='all'?'':' של '+S.cls),true):`<section class="ticket"><div class="t-main"><div class="t-title">אין עוד מבחנים השנה 🎉</div><div class="t-when">סיימתם! בהצלחה בהמשך.</div></div></section>`;
+  const banner=S.token?'':`<section class="banner"><div class="ic">${ICON.bell}</div><div><b>שלא תופתעו ממבחן</b><span>נרשמים פעם אחת ומקבלים מייל לפני כל מבחן של הכיתה והמגמה שלכם.</span></div><a class="btn" href="#/join">להרשמה</a></section>`;
+  const chips=[['bagrut','בגרות'],['mock','מתכונת'],['exam','מבחן'],['event','שבתות, חגים ואירועים']].map(([k,l])=>`<button type="button" class="chip k-${k}" data-k="${k}" aria-pressed="${!!S.k[k]}"><i></i>${l}</button>`).join('')+`<button type="button" class="chip" data-past aria-pressed="${S.past}" style="--c:var(--faint)"><i></i>מה שעבר</button>`;
+  app.innerHTML=`<div class="intro">
+    <div><h1 class="sr">לוח המבחנים של שכבת י״ב</h1><div class="seg" role="group" aria-label="בחירת כיתה">${segBtns}</div>${who}</div>
+    ${ticket}
+    <div class="stats"><div class="stat k-exam"><b data-c="${wk}">0</b><span>בשבוע הקרוב</span></div><div class="stat k-mock"><b data-c="${mo}">0</b><span>ב־30 הימים הקרובים</span></div><div class="stat k-bagrut"><b data-c="${bag}">0</b><span>בגרויות שנותרו</span></div></div>
+    ${yearHtml()}
+    <div style="height:14px"></div>
+    ${banner}
+    <section class="card" aria-label="כל המבחנים"><div class="toolbar"><div class="chips">${chips}</div><div class="seg sm" role="group" aria-label="תצוגה"><button type="button" data-view="list" aria-pressed="${S.view==='list'}">רשימה</button><button type="button" data-view="month" aria-pressed="${S.view==='month'}">חודש</button></div></div><div id="board"></div></section>
+  </div>`;
+  renderBoard();
+  if(nx)startTicket(nx);
+  app.querySelectorAll('.stat b[data-c]').forEach(b=>countUp(b,+b.dataset.c));
+  const fill=app.querySelector('.track .fill');requestAnimationFrame(()=>requestAnimationFrame(()=>fill.style.width=fill.dataset.w+'%'));
+  app.querySelectorAll('[data-cls]').forEach(b=>b.onclick=()=>{S.cls=b.dataset.cls;S.selDay=null;LS.set('yb.clsManual',true);save();renderHome()});
+  app.querySelector('[data-onb]').onclick=()=>onboarding(true);
+  app.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{S.k[b.dataset.k]=!S.k[b.dataset.k];save();b.setAttribute('aria-pressed',S.k[b.dataset.k]);renderBoard()});
+  const pb=app.querySelector('[data-past]');pb.onclick=()=>{S.past=!S.past;pb.setAttribute('aria-pressed',S.past);renderBoard()};
+  app.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{S.view=b.dataset.view;save();app.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderBoard()});
+  const cb=app.querySelector('[data-act="cal"]');if(cb)cb.onclick=()=>openCal(S.cls!=='all'?S.cls:(S.me&&S.me.cls));
+}
+const vis=d=>d.items.filter(i=>forCls(i)&&S.k[i.k]);
+const itemHtml=i=>{
+  if(i.k==='event'){const ek=evKind(i);return `<div class="it ev k-${ek}"><span class="emo">${emo(i.t)}</span><span class="tt">${esc(i.t)}</span>${S.cls==='all'&&i.c.length<4?`<span class="cls">${i.c.map(c=>`<span>${c}</span>`).join('')}</span>`:''}</div>`}
+  const m=majorOf(i.t);
+  return `<div class="it k-${i.k}"><span class="bar"></span><span class="pill k-${i.k}">${KIND[i.k]}</span><span class="tt">${esc(i.t)}</span>${m?`<span class="mtag">${MAJORS[m][1]} ${MAJORS[m][0]}</span>`:''}${S.cls==='all'?`<span class="cls">${i.c.length===4?'<span>כל השכבה</span>':i.c.map(c=>`<span>${c}</span>`).join('')}</span>`:''}</div>`;
+};
+function renderBoard(){
+  const el=$('#board');if(!el)return;
+  if(S.view==='month')return renderMonth(el);
+  let html='',cur='',n=0;
+  for(const d of DATA){
+    const df=diff(d.d);if(df<0&&!S.past)continue;
+    const its=vis(d);if(!its.length)continue;n++;
+    const D=dt(d.d),mk=D.getFullYear()+'-'+D.getMonth();
+    if(mk!==cur){cur=mk;const cnt=DATA.filter(x=>{const y=dt(x.d);return y.getMonth()===D.getMonth()&&y.getFullYear()===D.getFullYear()&&(S.past||diff(x.d)>=0)}).reduce((a,x)=>a+x.items.filter(i=>i.k!=='event'&&forCls(i)&&S.k[i.k]).length,0);html+=`<div class="mo">${MONTHS[D.getMonth()]} ${D.getFullYear()}${cnt?`<small>${cnt} מבחנים</small>`:''}</div>`}
+    const soon=df>=0&&df<=7&&its.some(i=>i.k!=='event');
+    html+=`<div class="day rv${df<0?' past':''}${df===0?' today':''}${D.getDay()===6?' sat':''}"><div class="dn"><b>${D.getDate()}</b><i>${d.w}</i></div><div><div class="dmeta">${esc(d.h)}${soon?`<span class="soon">${inWords(df)}</span>`:''}</div>${its.map(itemHtml).join('')}</div></div>`;
+  }
+  el.innerHTML=`<div class="list">${n?html:'<div class="empty">אין מה להציג עם הסינון הזה. אפשר להדליק עוד סוגים למעלה.</div>'}</div>`;
+  reveal(el);
+}
+function renderMonth(el){
+  if(!S.month){const nx=upcoming()[0];const b=nx?dt(nx.d):today;S.month=new Date(b.getFullYear(),b.getMonth(),1)}
+  const y=S.month.getFullYear(),m=S.month.getMonth();
+  const first=new Date(y,m,1),start=new Date(y,m,1-first.getDay());
+  const byDate=Object.fromEntries(DATA.map(d=>[d.d,d]));
+  let cells='';
+  for(let i=0;i<42;i++){
+    const d=new Date(start);d.setDate(start.getDate()+i);
+    if(i>=35&&d.getMonth()!==m)break;
+    const k=iso(d),day=byDate[k],its=day?vis(day):[],out=d.getMonth()!==m;
+    const exams=its.filter(x=>x.k!=='event'),evs=its.filter(x=>x.k==='event');
+    cells+=`<button type="button" class="cell${out?' out':''}${k===TODAY?' today':''}${d.getDay()===6?' sat':''}" data-d="${k}" aria-pressed="${S.selDay===k}" aria-label="${d.getDate()} ב${MONTHS[d.getMonth()]}${its.length?', '+esc(its.map(x=>x.t).join(', ')):''}" ${out?'tabindex="-1"':''}>
+      <span class="n"><span>${d.getDate()}</span>${!out&&evs.length?`<em>${emo(evs[0].t)}</em>`:''}</span>${out?'':exams.slice(0,2).map(x=>`<span class="lab k-${x.k}">${esc(x.t)}</span>`).join('')+(exams.length>2?`<span class="lab k-hol">+${exams.length-2}</span>`:'')}
+      <span class="dots">${out?'':exams.slice(0,4).map(x=>`<i class="k-${x.k}"></i>`).join('')}</span></button>`;
+  }
+  const sel=S.selDay&&byDate[S.selDay]?vis(byDate[S.selDay]):[];
+  const selHtml=S.selDay?`<div class="dayp"><h4>יום ${WD[dt(S.selDay).getDay()]}, ${pretty(S.selDay)}${byDate[S.selDay]?` <span style="font-weight:400;color:var(--muted);font-size:13px">${esc(byDate[S.selDay].h)}</span>`:''}</h4>${sel.length?sel.map(itemHtml).join(''):'<div style="color:var(--muted);font-size:14px">אין מבחנים ביום הזה.</div>'}</div>`:'';
+  el.innerHTML=`<div class="mhead"><h3>${MONTHS[m]} ${y}</h3><button class="icbtn" type="button" data-mv="-1" aria-label="החודש הקודם">${ICON.prev}</button><button class="btn" type="button" data-mv="0">היום</button><button class="icbtn" type="button" data-mv="1" aria-label="החודש הבא">${ICON.next}</button></div>
+    <div class="grid">${WD.map(w=>`<div class="wd">${w}</div>`).join('')}${cells}</div>${selHtml}`;
+  el.querySelectorAll('[data-mv]').forEach(b=>b.onclick=()=>{const v=+b.dataset.mv;S.month=v===0?new Date(today.getFullYear(),today.getMonth(),1):new Date(y,m+v,1);S.selDay=v===0?TODAY:null;renderMonth(el)});
+  el.querySelectorAll('.cell:not(.out)').forEach(b=>b.onclick=()=>{S.selDay=S.selDay===b.dataset.d?null:b.dataset.d;renderMonth(el)});
+}
+function calButtons(cls,mj){const u=calUrls(cls,mj);return `<div class="calbtns"><a class="btn" href="${u.google}" target="_blank" rel="noopener">${ICON.cal}Google Calendar (אנדרואיד)</a><a class="btn" href="${u.webcal}">${ICON.cal}יומן אייפון / Outlook</a><button class="btn" type="button" data-copy="${u.http}">${ICON.copy}העתקת קישור ליומן</button></div>`}
+function openCal(c){
+  const dlg=$('#dlg');
+  const draw=cls=>{
+    dlg.innerHTML=`<div class="dlg-h"><h3>חיבור ליומן${cls?' · '+cls:''}</h3><button class="icbtn" type="button" data-close aria-label="סגירה">${ICON.x}</button></div><div class="card-b">${cls?`<p style="margin:0 0 14px;color:var(--muted);font-size:14px">כל המבחנים של ${cls}${majorsNow().length?' והמגמות שלך':''} יופיעו ביומן ויתעדכנו לבד.</p>${calButtons(cls,majorsNow())}`:`<p style="margin:0 0 12px;color:var(--muted)">לאיזו כיתה לחבר?</p><div class="seg">${CLASSES.map(x=>`<button type="button" data-pc="${x}">${x}</button>`).join('')}</div>`}</div>`;
+    dlg.querySelector('[data-close]').onclick=()=>dlg.close();
+    dlg.querySelectorAll('[data-pc]').forEach(b=>b.onclick=()=>draw(b.dataset.pc));
+    dlg.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy));
+  };
+  draw(c);dlg.showModal();
+}
+$('#dlg').addEventListener('click',e=>{if(e.target===$('#dlg'))$('#dlg').close()});
+async function copy(t){try{await navigator.clipboard.writeText(t);toast('הקישור הועתק')}catch(e){prompt('העתיקו את הקישור:',t)}}
+const clsPicker=sel=>`<div class="seg" role="group" aria-label="כיתה" id="clsPick">${CLASSES.map(c=>`<button type="button" data-c="${c}" aria-pressed="${sel===c}">${c}</button>`).join('')}</div>`;
+const bindPicker=(root,on)=>root.querySelectorAll('#clsPick [data-c]').forEach(b=>b.onclick=()=>{root.querySelectorAll('#clsPick [data-c]').forEach(x=>x.setAttribute('aria-pressed',x===b));on(b.dataset.c)});
+const mjPicker=sel=>`<div class="majors" id="mjPick">${Object.entries(MAJORS).map(([k,[n,e]])=>`<button type="button" class="mjb" data-m="${k}" aria-pressed="${sel.includes(k)}"><span class="e">${e}</span>${n}</button>`).join('')}</div>`;
+const bindMj=(root,arr)=>root.querySelectorAll('#mjPick [data-m]').forEach(b=>b.onclick=()=>{const k=b.dataset.m,i=arr.indexOf(k);i>=0?arr.splice(i,1):arr.push(k);b.setAttribute('aria-pressed',arr.includes(k))});
+function renderJoin(){
+  if(S.token){location.hash='#/me';return}
+  let cls=S.cls!=='all'?S.cls:null;const mj=[...S.majors];
+  app.innerHTML=`<div class="intro">
+    <div><h1 class="h-page">תזכורות <span class="grad">שעובדות בשבילך</span></h1><p class="lead">נרשמים פעם אחת ולא מפספסים אף מבחן. בלי סיסמה ובלי אפליקציה.</p></div>
+    <div class="join">
+      <ul class="perks">
+        <li><span class="ic">${ICON.mail}</span><div><b>מייל לפני כל מבחן</b><span>רק על המבחנים של הכיתה והמגמות שלך. שבוע לפני, 3 ימים או יום לפני, לבחירתך.</span></div></li>
+        <li><span class="ic">${ICON.user}</span><div><b>אזור אישי</b><span>ספירה לאחור, סימון מה כבר למדת, והגדרות התזכורות.</span></div></li>
+        <li><span class="ic">${ICON.cal}</span><div><b>חיבור ליומן בטלפון</b><span>כל המבחנים נכנסים ליומן ומתעדכנים לבד.</span></div></li>
+        <li><span class="ic">${ICON.target}</span><div><b>הסרה בלחיצה</b><span>בכל מייל יש קישור להסרה. המייל שלך לא מוצג לאף אחד.</span></div></li>
+      </ul>
+      <form class="card card-b" id="jf" novalidate style="padding:22px">
+        <div class="field"><label for="nm">שם מלא</label><input class="input" id="nm" autocomplete="name" maxlength="60" required></div>
+        <div class="field"><label for="em">מייל</label><input class="input" id="em" type="email" dir="ltr" inputmode="email" autocomplete="email" maxlength="120" required></div>
+        <div class="field"><span class="lab">כיתה</span>${clsPicker(cls)}</div>
+        <div class="field"><span class="lab">מגמות <span style="color:var(--muted);font-weight:400">(אפשר כמה)</span></span>${mjPicker(mj)}</div>
+        <div class="hp" aria-hidden="true"><input id="website" tabindex="-1" autocomplete="off"></div>
+        <button class="btn glow big" type="submit" id="go">הרשמה לתזכורות</button>
+        <p class="err" id="err" role="alert"></p>
+        <p class="help" style="text-align:center;margin:0">כבר נרשמת? <a href="#/me">כניסה לאזור האישי</a></p>
+      </form>
+    </div></div>`;
+  const f=$('#jf');bindPicker(f,c=>cls=c);bindMj(f,mj);
+  f.onsubmit=async e=>{
+    e.preventDefault();const err=$('#err');err.textContent='';
+    const name=$('#nm').value.trim(),email=$('#em').value.trim();
+    if(name.length<2){err.textContent='צריך למלא שם מלא.';$('#nm').focus();return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='כתובת המייל לא תקינה.';$('#em').focus();return}
+    if(!cls){err.textContent='צריך לבחור כיתה.';return}
+    const go=$('#go');go.disabled=true;go.textContent='נרשם…';
+    try{
+      const j=await api('/api/register',{method:'POST',body:{name,email,cls,majors:mj,website:$('#website').value}});
+      S.token=j.token;S.me=j.sub;S.cls=cls;S.majors=mj;LS.set('yb.token',S.token);LS.set('yb.me',S.me);LS.set('yb.onb',true);LS.set('yb.clsManual',false);save();
+      const r=go.getBoundingClientRect();confetti(r.left+r.width/2,r.top,120);
+      toast(j.existing?'הפרטים עודכנו':'נרשמת! שלחנו לך מייל אישור');
+      setTimeout(()=>location.hash='#/me',500);
+    }catch(x){err.textContent='ההרשמה לא נשמרה. בדקו את הפרטים ונסו שוב.';go.disabled=false;go.textContent='הרשמה לתזכורות'}
+  };
+}
+async function renderMe(){
+  if(!S.token)return renderLogin();
+  if(!S.me)app.innerHTML='<div class="skel"></div>';else drawMe();
+  try{const j=await api('/api/me?t='+encodeURIComponent(S.token));S.me=j.sub;LS.set('yb.me',S.me);syncFromMe();updateNav();if(location.hash.startsWith('#/me'))drawMe()}
+  catch(e){if(e.status===404){logout(true);toast('ההרשמה לא נמצאה. אפשר להירשם מחדש.')}else if(!S.me)app.innerHTML='<div class="empty">לא הצלחנו לטעון את האזור האישי. בדקו את החיבור ונסו שוב.</div>'}
+}
+function renderLogin(){
+  app.innerHTML=`<div class="intro">
+    <div><h1 class="h-page">האזור <span class="grad">האישי</span></h1><p class="lead">נכנסים עם המייל שאיתו נרשמתם. נשלח לכם קישור כניסה, בלי סיסמה.</p></div>
+    <div class="join">
+      <form class="card card-b" id="lf" novalidate style="padding:22px">
+        <div class="field"><label for="lem">מייל</label><input class="input" id="lem" type="email" dir="ltr" inputmode="email" autocomplete="email" required></div>
+        <button class="btn glow big" type="submit" id="lgo">שליחת קישור כניסה</button>
+        <p class="err" id="lerr" role="alert"></p>
+      </form>
+      <div class="card card-b lift" style="padding:22px"><b style="display:block;font-size:16px;margin-bottom:4px">עוד לא נרשמתם?</b><p style="margin:0 0 14px;color:var(--muted);font-size:14px">ההרשמה לוקחת חצי דקה, ומיד אחריה תגיעו לכאן.</p><a class="btn" href="#/join">${ICON.bell}להרשמה לתזכורות</a></div>
+    </div></div>`;
+  $('#lf').onsubmit=async e=>{
+    e.preventDefault();const err=$('#lerr');err.textContent='';const email=$('#lem').value.trim();
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)){err.textContent='כתובת המייל לא תקינה.';return}
+    const b=$('#lgo');b.disabled=true;b.textContent='שולח…';
+    try{await api('/api/login',{method:'POST',body:{email}});
+      $('#lf').innerHTML=`<div style="text-align:center;padding:10px 0" class="slide"><div class="avatar" style="margin:0 auto 12px">${ICON.mail.replace('<svg','<svg width="26" height="26"')}</div><b style="font-size:17px">בדקו את תיבת המייל</b><p style="color:var(--muted);margin:6px 0 0;font-size:14px">אם הכתובת רשומה אצלנו, שלחנו אליה קישור כניסה. כדאי להציץ גם בספאם.</p></div>`}
+    catch(x){err.textContent='משהו השתבש. נסו שוב בעוד רגע.';b.disabled=false;b.textContent='שליחת קישור כניסה'}
+  };
+}
+async function patchMe(body,msg='נשמר'){
+  try{const j=await api('/api/me?t='+encodeURIComponent(S.token),{method:'POST',body});S.me=j.sub;LS.set('yb.me',S.me);updateNav();toast(msg);return true}
+  catch(e){toast('השמירה נכשלה. נסו שוב.');return false}
+}
+function drawMe(){
+  clearTimers();
+  const me=S.me,mj=me.majors||[],up=upcoming(me.cls,mj),next5=up.slice(0,6);
+  const keys=next5.flatMap(d=>d.items.map(i=>d.d+'|'+i.t));
+  const done=keys.filter(k=>S.prep.has(k)).length,nx=up[0],rm=me.remind||[];
+  const remRow=(d,t,s)=>`<div class="row"><div class="lbl"><b>${t}</b><span>${s}</span></div><button type="button" class="switch" role="switch" aria-checked="${rm.includes(d)}" data-rm="${d}" aria-label="${t}"${me.paused?' disabled':''}></button></div>`;
+  app.innerHTML=`<div class="intro">
+    <div class="prof"><div class="avatar">${esc(me.name.trim()[0]||'?')}</div><div><h1>שלום, ${esc(me.name.split(' ')[0])} 👋</h1><p><span class="pill k-bagrut">${me.cls}</span>${mj.map(m=>`<span class="mj">${MAJORS[m][1]} ${MAJORS[m][0]}</span>`).join('')}${me.isAdmin?`<span class="pill k-event">${ICON.shield.replace('<svg','<svg width="12" height="12"')} מנהל</span>`:''}</p></div></div>
+    ${nx?ticketHtml(nx,'המבחן הבא שלך',false):''}
+    <div class="me-grid">
+      <div>
+        <section class="card"><div class="card-h"><h2>המבחנים הקרובים</h2><span class="sub">${done} מתוך ${keys.length} מוכנים</span></div>
+          <div class="card-b"><div class="prog" aria-hidden="true"><i style="width:${keys.length?Math.round(done/keys.length*100):0}%"></i></div>
+          ${next5.length?next5.map(d=>d.items.map(i=>{const k=d.d+'|'+i.t,on=S.prep.has(k),n=diff(d.d);return `<div class="task${on?' done':''}"><div class="when"><b>${dt(d.d).getDate()}</b><i>${MONTHS[dt(d.d).getMonth()]}</i></div><div class="what"><b>${esc(i.t)}</b><span><span class="k-${i.k}" style="color:var(--c);font-weight:700">${KIND[i.k]}</span> · ${n<=7?`<span class="soon">${inWords(n)}</span>`:inWords(n)}</span></div><button type="button" class="check" data-prep="${esc(k)}" aria-pressed="${on}" aria-label="סימון ${esc(i.t)} כמוכן">${ICON.check}</button></div>`}).join('')).join(''):'<div class="empty" style="padding:20px 0">אין מבחנים קרובים 🎉</div>'}
+          <p class="help" style="margin-top:10px">הסימון נשמר במכשיר הזה בלבד.</p></div></section>
+        <section class="card"><div class="card-h"><h2>חיבור ליומן</h2></div><div class="card-b"><p style="margin:0 0 12px;color:var(--muted);font-size:14px">כל המבחנים של ${me.cls}${mj.length?' והמגמות שלך':''} ביומן של הטלפון, עם התראה ערב לפני.</p>${calButtons(me.cls,mj)}</div></section>
+      </div>
+      <div>
+        <section class="card"><div class="card-h"><h2>תזכורות במייל</h2></div><div class="card-b">
+          ${remRow(7,'שבוע לפני','מספיק זמן להתחיל ללמוד')}${remRow(3,'3 ימים לפני','חזרה אחרונה על החומר')}${remRow(1,'יום לפני','שלא תשכחו להביא מה שצריך')}
+          <div class="row"><div class="lbl"><b>השהיית כל התזכורות</b><span>למשל בחופשה. אפשר להפעיל שוב בכל זמן.</span></div><button type="button" class="switch" role="switch" aria-checked="${!!me.paused}" data-pause aria-label="השהיית תזכורות"></button></div>
+        </div></section>
+        <section class="card"><div class="card-h"><h2>הפרטים שלי</h2></div><form class="card-b" id="pf" novalidate>
+          <div class="field"><label for="pn">שם</label><input class="input" id="pn" value="${esc(me.name)}" maxlength="60"></div>
+          <div class="field"><span class="lab">כיתה</span>${clsPicker(me.cls)}</div>
+          <div class="field"><span class="lab">מגמות</span>${mjPicker(mj)}</div>
+          <button class="btn primary" type="submit">שמירת הפרטים</button>
+        </form></section>
+        <section class="card"><div class="card-b danger-zone">${me.isAdmin?`<a class="btn" href="#/admin">${ICON.shield}לדף הניהול</a>`:''}<button class="btn ghost" type="button" data-logout>יציאה מהמכשיר</button><button class="btn danger" type="button" data-del>מחיקת ההרשמה</button></div></section>
+      </div>
+    </div></div>`;
+  if(nx)startTicket(nx);
+  app.querySelectorAll('[data-prep]').forEach(b=>b.onclick=()=>{const k=b.dataset.prep;const was=S.prep.has(k);was?S.prep.delete(k):S.prep.add(k);save();
+    if(!was){const r=b.getBoundingClientRect();const all=keys.every(x=>S.prep.has(x));confetti(r.left+r.width/2,r.top+r.height/2,all?160:40);toast(all?'מוכנים לכל המבחנים הקרובים! 🏆':'כל הכבוד!')}
+    drawMe()});
+  app.querySelectorAll('[data-rm]').forEach(b=>b.onclick=async()=>{const d=+b.dataset.rm;const set=new Set(S.me.remind);set.has(d)?set.delete(d):set.add(d);b.setAttribute('aria-checked',set.has(d));if(await patchMe({remind:[...set]},set.size?'התזכורות עודכנו':'לא יישלחו תזכורות'))drawMe()});
+  app.querySelector('[data-pause]').onclick=async()=>{if(await patchMe({paused:!S.me.paused},!S.me.paused?'התזכורות הושהו':'התזכורות הופעלו'))drawMe()};
+  let pc=me.cls;const pmj=[...mj];const pf=$('#pf');bindPicker(pf,c=>pc=c);bindMj(pf,pmj);
+  pf.onsubmit=async e=>{e.preventDefault();const name=$('#pn').value.trim();if(name.length<2){toast('צריך שם של לפחות 2 אותיות');return}if(await patchMe({name,cls:pc,majors:pmj},'הפרטים נשמרו')){S.cls=pc;S.majors=pmj;LS.set('yb.clsManual',false);save();drawMe()}};
+  app.querySelectorAll('[data-copy]').forEach(b=>b.onclick=()=>copy(b.dataset.copy));
+  app.querySelector('[data-logout]').onclick=()=>{logout();toast('יצאת מהאזור האישי');route()};
+  app.querySelector('[data-del]').onclick=async()=>{if(!confirm('למחוק את ההרשמה? לא יישלחו יותר תזכורות.'))return;try{await api('/api/me?t='+encodeURIComponent(S.token),{method:'POST',body:{action:'delete'}});logout();toast('ההרשמה נמחקה');location.hash='#/'}catch(e){toast('המחיקה נכשלה. נסו שוב.')}};
+}
+function logout(silent){S.token=null;S.me=null;LS.del('yb.token');LS.del('yb.me');updateNav();if(silent)renderLogin()}
+let ADM=null;
+async function renderAdmin(){
+  if(S.token&&!S.me){app.innerHTML='<div class="skel"></div>';try{const j=await api('/api/me?t='+encodeURIComponent(S.token));S.me=j.sub;LS.set('yb.me',S.me);updateNav()}catch(e){}}
+  if(!S.token||!S.me||!S.me.isAdmin){app.innerHTML=`<div class="empty"><b style="display:block;font-size:18px;color:var(--ink);margin-bottom:6px">הדף הזה למנהלים בלבד</b>צריך להיכנס לאזור האישי עם מייל של מנהל.<div style="margin-top:14px"><a class="btn" href="#/me">לאזור האישי</a></div></div>`;return}
+  app.innerHTML='<div class="skel"></div>';
+  try{ADM=await api('/api/admin?t='+encodeURIComponent(S.token));drawAdmin()}
+  catch(e){app.innerHTML=`<div class="empty">${e.status===403?'אין הרשאת ניהול לחשבון הזה.':'לא הצלחנו לטעון את הנתונים. נסו לרענן.'}</div>`}
+}
+function drawAdmin(q='',fc='all'){
+  const subs=ADM.subs,tot=subs.length,paused=subs.filter(s=>s.paused).length;
+  const byCls=CLASSES.map(c=>[c,subs.filter(s=>s.cls===c).length]);
+  const byMj=Object.keys(MAJORS).map(m=>[m,subs.filter(s=>(s.majors||[]).includes(m)).length]);
+  const max=a=>Math.max(1,...a.map(x=>x[1]));
+  const weekNew=subs.filter(s=>Date.now()-Date.parse(s.createdAt)<7*864e5).length;
+  const sent14=ADM.preview.reduce((a,p)=>a+p.count,0);
+  app.innerHTML=`<div class="intro">
+    <div><h1 class="h-page">דף <span class="grad">הניהול</span></h1><p class="lead">כל הנרשמים, התזכורות הקרובות וכלים לבדיקה.</p></div>
+    <div class="kpis"><div class="stat k-bagrut"><b data-c="${tot}">0</b><span>נרשמים</span></div><div class="stat k-exam"><b data-c="${weekNew}">0</b><span>חדשים השבוע</span></div><div class="stat k-mock"><b data-c="${sent14}">0</b><span>מיילים בשבועיים הקרובים</span></div><div class="stat k-event"><b data-c="${paused}">0</b><span>השהו תזכורות</span></div></div>
+    <div class="me-grid" style="margin-bottom:16px">
+      <div>
+        <section class="card"><div class="card-h"><h2>תזכורות שייצאו בשבועיים הקרובים</h2></div><div class="card-b">${ADM.preview.length?`<div class="prev">${ADM.preview.map(p=>`<div class="p"><b>${p.count}</b><div><div style="font-weight:600">${diff(p.date)===0?'היום':diff(p.date)===1?'מחר':'יום '+WD[dt(p.date).getDay()]+', '+pretty(p.date)}</div><span>${p.subjects.map(esc).join(' · ')}</span></div></div>`).join('')}</div>`:'<div class="empty" style="padding:16px 0">אין תזכורות מתוכננות בשבועיים הקרובים.</div>'}</div></section>
+      </div>
+      <div>
+        <section class="card"><div class="card-h"><h2>לפי כיתה</h2></div><div class="card-b bars">${byCls.map(([c,n])=>`<div class="b"><span>${c}</span><div class="t"><i data-w="${n/max(byCls)*100}"></i></div><b>${n}</b></div>`).join('')}</div></section>
+        <section class="card"><div class="card-h"><h2>לפי מגמה</h2></div><div class="card-b bars">${byMj.map(([m,n])=>`<div class="b"><span>${MAJORS[m][1]} ${MAJORS[m][0]}</span><div class="t"><i data-w="${n/max(byMj)*100}"></i></div><b>${n}</b></div>`).join('')}</div></section>
+        <section class="card"><div class="card-b" style="display:grid;gap:8px"><button class="btn" type="button" data-test>${ICON.send}שליחת מייל תזכורת לדוגמה אליי</button><button class="btn" type="button" data-csv>${ICON.download}הורדת הנרשמים לאקסל</button><button class="btn ghost" type="button" data-reload>רענון הנתונים</button></div></section>
+      </div>
+    </div>
+    <section class="card"><div class="card-h"><h2>הנרשמים</h2><span class="sub" id="cnt"></span></div>
+      <div class="adm-tools"><input class="input" id="aq" placeholder="חיפוש לפי שם או מייל" value="${esc(q)}"><select id="ac" aria-label="סינון לפי כיתה"><option value="all">כל הכיתות</option>${CLASSES.map(c=>`<option ${fc===c?'selected':''}>${c}</option>`).join('')}</select></div>
+      <div class="tblw"><table class="tbl"><thead><tr><th>שם</th><th>כיתה</th><th>מגמות</th><th>מייל</th><th>תזכורות</th><th>נרשם</th><th></th></tr></thead><tbody id="tb"></tbody></table></div>
+    </section></div>`;
+  app.querySelectorAll('.stat b[data-c]').forEach(b=>countUp(b,+b.dataset.c));
+  requestAnimationFrame(()=>requestAnimationFrame(()=>app.querySelectorAll('.bars i').forEach(i=>i.style.width=i.dataset.w+'%')));
+  const rtxt=s=>s.paused?'מושהה':[...(s.remind||[])].sort((a,b)=>b-a).map(d=>d===1?'יום':d===7?'שבוע':d+' ימים').join(', ')||'ללא';
+  const fill=()=>{
+    const qq=$('#aq').value.trim().toLowerCase(),cc=$('#ac').value;
+    const rows=subs.filter(s=>(cc==='all'||s.cls===cc)&&(!qq||s.name.toLowerCase().includes(qq)||s.email.toLowerCase().includes(qq))).sort((a,b)=>a.cls.localeCompare(b.cls)||a.name.localeCompare(b.name,'he'));
+    $('#cnt').textContent=`${rows.length} מתוך ${tot}`;
+    $('#tb').innerHTML=rows.map(s=>`<tr><td style="font-weight:600">${esc(s.name)}</td><td>${s.cls}</td><td>${(s.majors||[]).map(m=>MAJORS[m]?MAJORS[m][1]:'').join(' ')||'<span style="color:var(--faint)">—</span>'}</td><td dir="ltr" style="text-align:right">${esc(s.email)}</td><td>${rtxt(s)}</td><td>${new Date(s.createdAt).toLocaleDateString('he-IL')}</td><td><button class="icbtn" type="button" data-delid="${s.id}" aria-label="מחיקת ${esc(s.name)}">${ICON.trash}</button></td></tr>`).join('')||'<tr><td colspan="7" class="empty">אין נרשמים שמתאימים לחיפוש.</td></tr>';
+    $('#tb').querySelectorAll('[data-delid]').forEach(b=>b.onclick=async()=>{const s=subs.find(x=>x.id===b.dataset.delid);if(!confirm(`למחוק את ${s.name}?`))return;try{await api('/api/admin?t='+encodeURIComponent(S.token),{method:'POST',body:{action:'delete',id:s.id}});ADM.subs=subs.filter(x=>x.id!==s.id);toast('נמחק');drawAdmin($('#aq').value,$('#ac').value)}catch(e){toast('המחיקה נכשלה')}});
+  };
+  fill();$('#aq').oninput=fill;$('#ac').onchange=fill;
+  app.querySelector('[data-test]').onclick=async e=>{const b=e.currentTarget;b.disabled=true;try{await api('/api/admin?t='+encodeURIComponent(S.token),{method:'POST',body:{action:'test'}});toast('נשלח! בדוק את המייל שלך')}catch(x){toast(x.message==='no_exams'?'אין מבחנים קרובים לשלוח עליהם':'השליחה נכשלה')}b.disabled=false};
+  app.querySelector('[data-csv]').onclick=()=>{const rows=[['שם','כיתה','מגמות','מייל','תזכורות','נרשם'],...subs.map(s=>[s.name,s.cls,(s.majors||[]).map(m=>MAJORS[m]?MAJORS[m][0]:m).join(' / '),s.email,rtxt(s),s.createdAt.slice(0,10)])];const csv='\ufeff'+rows.map(r=>r.map(v=>`"${String(v).replace(/"/g,'""')}"`).join(',')).join('\n');const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));a.download='nirshamim.csv';a.click();toast('הקובץ ירד')};
+  app.querySelector('[data-reload]').onclick=renderAdmin;
+}
+window.addEventListener('hashchange',route);
+fetch('/days.json').then(r=>r.json()).then(d=>{DATA=d;if(S.cls!=='all'&&!CLASSES.includes(S.cls))S.cls='all';if(S.me)syncFromMe();route();setTimeout(()=>onboarding(false),400);
+  if(S.token)api('/api/me?t='+encodeURIComponent(S.token)).then(j=>{S.me=j.sub;LS.set('yb.me',S.me);syncFromMe();updateNav()}).catch(()=>{});})
+  .catch(()=>{app.innerHTML='<div class="empty">הלוח לא נטען. רעננו את הדף.</div>'});
+})();
+</script>
+</body>
+</html>

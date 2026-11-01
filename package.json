@@ -1,0 +1,8 @@
+{
+  "name": "luach-mivchanim-yb",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@vercel/blob": "latest"
+  }
+}
