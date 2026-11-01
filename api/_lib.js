@@ -1,6 +1,6 @@
 import crypto from 'node:crypto';
 import { put, get, del, list } from '@vercel/blob';
-import { EXAMS } from './_exams.js';
+import { EXAMS, ALL_DAYS } from './_exams.js';
 
 export const CLASSES = ['יב1', 'יב2', 'יב3', 'יב4'];
 export const REMIND_OPTIONS = [7, 3, 1];
@@ -11,7 +11,7 @@ export const relevant = (i, cls, majors) => i.c.includes(cls) && (!majors || !ma
 export const ADMIN_EMAILS = (process.env.ADMIN_EMAILS || 'aviya.nish@gmail.com').split(',').map((e) => e.trim().toLowerCase());
 export const isAdmin = (s) => !!s && ADMIN_EMAILS.includes(String(s.email).toLowerCase());
 const MONTHS = ['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
-export const KIND = { bagrut: 'בגרות', mock: 'מתכונת', exam: 'מבחן' };
+export const KIND = { bagrut: 'בגרות', mock: 'מתכונת', exam: 'מבחן', event: 'אירוע' };
 
 export const siteUrl = () =>
   process.env.SITE_URL ||
@@ -62,7 +62,7 @@ export const normalize = (s) => ({
   majors: Array.isArray(s.majors) ? s.majors.filter((m) => MAJORS[m]) : [],
 });
 export const cleanMajors = (a) => (Array.isArray(a) ? [...new Set(a)].filter((m) => MAJORS[m]) : []);
-export const publicSub = (s) => ({ name: s.name, cls: s.cls, email: s.email, remind: s.remind, majors: s.majors || [], paused: !!s.paused, createdAt: s.createdAt, isAdmin: isAdmin(s) });
+export const publicSub = (s) => ({ name: s.name, cls: s.cls, email: s.email, remind: s.remind, majors: s.majors || [], paused: !!s.paused, createdAt: s.createdAt, isAdmin: isAdmin(s), channels: s.channels || { email: true, push: false }, kinds: s.kinds || ['bagrut', 'mock', 'exam', 'event'], pushCount: Array.isArray(s.push) ? s.push.length : 0 });
 
 export const todayIL = () => new Intl.DateTimeFormat('en-CA', { timeZone: 'Asia/Jerusalem' }).format(new Date());
 export const addDays = (iso, n) => {
@@ -77,6 +77,13 @@ export const examsOn = (iso, cls, majors) => {
   const items = day.items.filter((i) => relevant(i, cls, majors));
   return items.length ? { ...day, items } : null;
 };
+// Everything on a date for this class, including events (שבת ישיבה, trips...). Used by reminders.
+export const daysOn = (iso, cls, majors) => {
+  const day = ALL_DAYS.find((x) => x.d === iso);
+  if (!day) return null;
+  const items = day.items.filter((i) => relevant(i, cls, majors));
+  return items.length ? { ...day, items } : null;
+};
 export const upcomingFor = (cls, fromIso, limit = 5, majors) =>
   EXAMS.filter((d) => d.d >= fromIso)
     .map((d) => ({ ...d, items: d.items.filter((i) => relevant(i, cls, majors)) }))
@@ -87,7 +94,7 @@ export const examsForClass = (cls, majors) =>
 
 export const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
-const C = { ink: '#0E1A2B', muted: '#5B6779', line: '#DFE4EA', bg: '#F3F5F7', bagrut: '#2547B8', mock: '#B8700F', exam: '#0F7B66' };
+const C = { ink: '#0E1A2B', muted: '#5B6779', line: '#DFE4EA', bg: '#F3F5F7', bagrut: '#2547B8', mock: '#B8700F', exam: '#0F7B66', event: '#7A3FB8' };
 const button = (href, label) => `<a href="${href}" style="display:inline-block;background:${C.ink};color:#ffffff;text-decoration:none;font-weight:bold;font-size:15px;padding:12px 22px;border-radius:10px">${label}</a>`;
 const shell = (pre, inner, id) => `<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width"></head>
 <body style="margin:0;background:${C.bg};font-family:Arial,Helvetica,sans-serif;color:${C.ink}">
@@ -113,7 +120,7 @@ export const reminderEmail = (sub, day, n) => ({
 <p style="font-size:22px;font-weight:bold;margin:0">יום ${esc(day.w)}, ${prettyDate(day.d)}</p>
 <p style="font-size:14px;color:${C.muted};margin:2px 0 10px">${esc(day.h)}</p>
 ${day.items.map(itemRow).join('')}
-<p style="font-size:15px;margin:20px 0 18px">בהצלחה!</p>
+${day.items.some((i) => i.k !== 'event') ? '<p style="font-size:15px;margin:20px 0 18px">בהצלחה!</p>' : '<p style="margin:0 0 18px"></p>'}
 ${button(meUrl(sub.id), 'לאזור האישי')}`, sub.id),
 });
 
@@ -121,7 +128,7 @@ export const welcomeEmail = (sub, upcoming) => ({
   subject: `נרשמת לתזכורות המבחנים של ${sub.cls}`,
   html: shell('ההרשמה הצליחה. כאן גם הקישור לאזור האישי שלך.', `
 <p style="font-size:20px;font-weight:bold;margin:0 0 8px">שלום ${esc(sub.name)}, נרשמת בהצלחה</p>
-<p style="font-size:15px;margin:0 0 18px;color:${C.muted};line-height:1.6">מעכשיו תקבל מייל שבוע לפני כל מבחן של ${esc(sub.cls)}${sub.majors && sub.majors.length ? ` ושל המגמות שלך (${sub.majors.map((m) => MAJORS[m]).join(', ')})` : ''}. באזור האישי אפשר להוסיף תזכורת גם יום לפני, להחליף כיתה ולחבר את הלוח ליומן בטלפון.</p>
+<p style="font-size:15px;margin:0 0 18px;color:${C.muted};line-height:1.6">מעכשיו תקבל מייל שבוע לפני כל מבחן ואירוע של ${esc(sub.cls)}${sub.majors && sub.majors.length ? ` ושל המגמות שלך (${sub.majors.map((m) => MAJORS[m]).join(', ')})` : ''}. באזור האישי אפשר להוסיף תזכורת גם יום לפני, להחליף כיתה ולחבר את הלוח ליומן בטלפון.</p>
 ${button(meUrl(sub.id), 'לאזור האישי')}
 ${upcoming.length ? `<p style="font-size:15px;font-weight:bold;margin:26px 0 4px">המבחנים הקרובים</p>
 ${upcoming.map((d) => `<p style="margin:14px 0 0;font-weight:bold">יום ${esc(d.w)}, ${prettyDate(d.d)} <span style="font-weight:normal;color:${C.muted};font-size:13px">${esc(d.h)}</span></p>${d.items.map(itemRow).join('')}`).join('')}` : ''}`, sub.id),

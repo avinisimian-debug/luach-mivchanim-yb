@@ -7,6 +7,20 @@
 <meta name="description" content="לוח המבחנים של שכבת י״ב לפי כיתה ומגמה, עם תזכורת במייל לפני כל מבחן.">
 <meta name="theme-color" content="#F2F4F8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232F52D6'/><stop offset='1' stop-color='%230E8A70'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='32' y='44' font-size='30' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>יב</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="לוח מבחנים י״ב">
+<meta property="og:title" content="לוח מבחנים י״ב · תשפ״ז">
+<meta property="og:description" content="כל המבחנים, הבגרויות, המתכונות ושבתות הישיבה של השכבה, לפי כיתה ומגמה. עם תזכורות לפני כל מבחן.">
+<meta property="og:url" content="https://luach-mivchanim-yb.vercel.app/">
+<meta property="og:image" content="https://luach-mivchanim-yb.vercel.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="לוח מבחנים">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Frank+Ruhl+Libre:wght@700;900&family=IBM+Plex+Sans+Hebrew:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -319,7 +333,190 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
   .brand span:not(.mark){display:none}
 }
 @media (max-width:420px){.stat b{font-size:23px}.stat{padding:11px}.day{grid-template-columns:46px 1fr;padding:12px 14px}.cls{margin-inline-start:0;width:100%}.live div{min-width:38px}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+/* ===== v2 design layer ===== */
+:root{--grad:linear-gradient(135deg,var(--bagrut),#7A5CFF 55%,var(--exam))}
+.sprog{position:absolute;inset-inline-start:0;bottom:-1px;height:2px;width:0;background:var(--grad);border-radius:2px;transition:width .1s linear}
+/* spotlight that follows the pointer on cards */
+.spot{position:relative}
+.spot::before{content:"";position:absolute;inset:0;border-radius:inherit;pointer-events:none;opacity:0;transition:opacity .3s;background:radial-gradient(420px circle at var(--mx,50%) var(--my,50%),color-mix(in srgb,var(--k,var(--bagrut)) 10%,transparent),transparent 45%);z-index:0}
+@media (hover:hover){.spot:hover::before{opacity:1}}
+/* ticket */
+.ticket{background:linear-gradient(var(--surface),var(--surface)) padding-box,conic-gradient(from var(--ang,0deg),color-mix(in srgb,var(--k,var(--bagrut)) 70%,transparent),var(--line) 25%,var(--line) 60%,color-mix(in srgb,var(--k,var(--bagrut)) 70%,transparent)) border-box;border:1.5px solid transparent;animation:spin 8s linear infinite}
+@property --ang{syntax:"<angle>";inherits:false;initial-value:0deg}
+@keyframes spin{to{--ang:360deg}}
+.ticket::before{width:0}
+.t-main,.t-side{position:relative;z-index:1}
+.t-side{background:color-mix(in srgb,var(--k,var(--sunk)) 6%,var(--sunk))}
+.t-side::before,.t-side::after{border-color:transparent}
+.ticket.is-today .ring{animation:beat 2.4s ease-in-out infinite}
+.ticket.is-today .t-num{font-size:40px}
+@keyframes beat{0%,100%{transform:scale(1)}50%{transform:scale(1.04)}}
+.ring::after{content:"";position:absolute;inset:14px;border-radius:50%;background:radial-gradient(closest-side,color-mix(in srgb,var(--k,var(--bagrut)) 16%,transparent),transparent);z-index:-1}
+.t-date{margin-top:12px;text-align:center;font-size:13px;color:var(--muted);font-weight:600}
+.live div{position:relative;overflow:hidden}
+.live b.flip{animation:flip .35s ease}
+@keyframes flip{from{transform:translateY(-40%);opacity:.2}}
+.luck{margin-top:12px;font-weight:700;color:var(--k,var(--ok));display:flex;align-items:center;gap:6px}
+/* stats */
+.stats{gap:12px}
+.stat{display:flex;align-items:center;gap:12px;padding:14px 16px;border-radius:var(--r-lg);transition:transform .25s,box-shadow .25s}
+.stat::after{display:none}
+.stat .si{width:42px;height:42px;border-radius:13px;background:var(--soft);color:var(--c);display:grid;place-items:center;flex:none}
+.stat .si svg{width:20px;height:20px}
+.stat > div{min-width:0}
+@media (hover:hover){.stat:hover{transform:translateY(-2px);box-shadow:var(--shadow)}}
+/* this-week strip */
+.week{margin:0 0 14px}
+.week-h{display:flex;align-items:baseline;gap:10px;margin:2px 2px 10px}
+.week-h h2{font:700 21px var(--serif);margin:0}
+.week-h span{color:var(--muted);font-size:13px}
+.wstrip{display:flex;gap:10px;overflow-x:auto;scroll-snap-type:x mandatory;padding:2px 2px 8px;scrollbar-width:none}
+.wstrip::-webkit-scrollbar{display:none}
+.wc{scroll-snap-align:start;flex:0 0 200px;text-align:start;border:1px solid var(--line);background:var(--surface);border-radius:var(--r-lg);padding:12px 14px 14px;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s,border-color .25s;color:var(--ink)}
+.wc::before{content:"";position:absolute;inset-block-start:0;inset-inline:0;height:4px;background:var(--c)}
+@media (hover:hover){.wc:hover{transform:translateY(-3px);box-shadow:var(--shadow-h);border-color:color-mix(in srgb,var(--c) 40%,var(--line))}}
+.wc .wd2{display:flex;align-items:center;justify-content:space-between;font-size:12.5px;color:var(--muted);font-weight:600}
+.wc .wd2 b{font:700 22px/1 var(--sans);color:var(--ink);font-variant-numeric:tabular-nums}
+.wc .wt{display:block;font-weight:700;font-size:15px;margin:8px 0 6px;line-height:1.3}
+.wc .wx{display:block;font-size:12px;color:var(--muted);margin-top:4px}
+.wc.hot .when2{color:var(--urgent)}
+.when2{font-size:12px;font-weight:700}
+.wfree{flex:1;border:1px dashed var(--line);border-radius:var(--r-lg);padding:16px;color:var(--muted);text-align:center;background:color-mix(in srgb,var(--surface) 60%,transparent)}
+/* year track */
+.track{height:12px}
+.track .tk{width:11px;height:11px;transition:transform .2s}
+.track .tk:hover{transform:translate(50%,-50%) scale(1.6)}
+.track .now{top:-30px;background:var(--urgent);color:#fff;padding:2px 8px;border-radius:999px;font-size:11px;box-shadow:0 4px 12px -4px var(--urgent)}
+.track .now::after{top:100%;height:14px;width:2px}
+.track .now::before{content:"";position:absolute;left:50%;top:calc(100% + 13px);width:10px;height:10px;border-radius:50%;background:var(--urgent);transform:translateX(-50%);animation:ping 2s ease-out infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 color-mix(in srgb,var(--urgent) 60%,transparent)}100%{box-shadow:0 0 0 10px transparent}}
+.year .hd{margin-bottom:30px}
+/* banner */
+.banner{background:linear-gradient(120deg,#13214A,#2A2F8C 35%,#5B3FD1 55%,#0D5E52 80%,#13214A);background-size:300% 100%;animation:pan 14s ease-in-out infinite alternate}
+@keyframes pan{to{background-position:100% 0}}
+/* buttons */
+.btn.glow{position:relative;overflow:hidden}
+.btn.glow::after{content:"";position:absolute;inset:0;background:linear-gradient(105deg,transparent 35%,rgba(255,255,255,.35) 50%,transparent 65%);transform:translateX(120%);transition:transform .7s}
+.btn.glow:hover::after{transform:translateX(-120%)}
+/* list */
+.list .mo{font-size:22px;padding:14px 18px 10px}
+.list .mo small{background:var(--sunk);border:1px solid var(--line);border-radius:999px;padding:1px 9px;font-weight:600}
+.day{grid-template-columns:62px 1fr;gap:16px;padding:14px 18px;align-items:start;position:relative}
+.dn{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:var(--surface);padding:0;box-shadow:0 1px 2px rgba(13,24,48,.04)}
+.dn i{display:block;background:var(--sunk);border-bottom:1px solid var(--line2);font-size:11.5px;padding:3px 0}
+.dn b{font-size:22px;padding:6px 0 7px}
+.day.today .dn{border-color:var(--urgent)}
+.day.today .dn i{background:var(--urgent);color:#fff;border-color:var(--urgent)}
+.day.sat .dn i{color:var(--event)}
+.day.today{background:linear-gradient(90deg,transparent,color-mix(in srgb,var(--urgent) 8%,transparent))}
+.day.today::before{content:"";position:absolute;inset-block:0;inset-inline-start:0;width:3px;background:var(--urgent)}
+.it{gap:6px 10px;padding:5px 0}
+.it .bar{display:none}
+.it .tt{font-size:16px}
+.cls{margin-inline-start:0}
+.cls span{background:var(--sunk);border-color:var(--line2)}
+.soon{background:color-mix(in srgb,var(--urgent) 12%,transparent);padding:0 8px;border-radius:999px;font-size:12px}
+.day.hl{animation:hl 1.6s ease}
+@keyframes hl{0%,40%{background:color-mix(in srgb,var(--bagrut) 14%,transparent)}}
+/* month grid */
+.cell{border-radius:14px}
+@media (hover:hover){.cell:not(.out):hover{transform:translateY(-2px);box-shadow:var(--shadow)}}
+/* back to top */
+.totop{position:fixed;inset-inline-start:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 85%,transparent);backdrop-filter:blur(10px);box-shadow:var(--shadow);display:grid;place-items:center;z-index:25;opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:all .3s cubic-bezier(.2,.8,.2,1)}
+.totop.on{opacity:1;transform:none;pointer-events:auto}
+.totop svg{width:20px;height:20px;transform:rotate(-90deg)}
+/* personal area */
+.prof{position:relative;margin:4px 0 16px;padding:22px;border-radius:var(--r-xl);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;isolation:isolate;flex-wrap:wrap}
+.prof::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(500px 200px at 90% -20%,color-mix(in srgb,var(--glow1) 35%,transparent),transparent 70%),radial-gradient(400px 200px at 0% 120%,color-mix(in srgb,var(--glow2) 30%,transparent),transparent 70%)}
+.prof .pstats{display:flex;gap:8px;margin-inline-start:auto;flex-wrap:wrap}
+.prof .pstats div{background:color-mix(in srgb,var(--surface) 70%,transparent);border:1px solid var(--line);border-radius:14px;padding:8px 14px;text-align:center;min-width:86px;backdrop-filter:blur(6px)}
+.prof .pstats b{display:block;font:700 22px/1.1 var(--sans);font-variant-numeric:tabular-nums}
+.prof .pstats span{font-size:12px;color:var(--muted)}
+.avatar{animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-4px)}}
+.card{transition:box-shadow .25s}
+.task{border-radius:12px;transition:background .2s}
+.task:hover{background:var(--sunk)}
+.task .when{border:1px solid var(--line);border-radius:12px;padding:4px 0;background:var(--surface)}
+.chan{display:grid;grid-template-columns:repeat(2,1fr);gap:8px;margin-bottom:6px}
+.chb{display:flex;align-items:center;gap:10px;border:1.5px solid var(--line);background:var(--surface);border-radius:14px;padding:11px 12px;text-align:start;font-weight:600;font-size:14px;transition:all .2s;position:relative}
+.chb .ci{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;background:var(--sunk);font-size:17px;flex:none;transition:transform .3s}
+.chb small{display:block;font-weight:500;font-size:12px;color:var(--muted)}
+.chb[aria-pressed="true"]{border-color:var(--ok);background:color-mix(in srgb,var(--ok) 9%,var(--surface))}
+.chb[aria-pressed="true"] .ci{transform:scale(1.08) rotate(-6deg);background:color-mix(in srgb,var(--ok) 18%,var(--surface))}
+.chb[aria-pressed="true"]::after{content:"✓";position:absolute;inset-inline-end:10px;top:8px;font-size:12px;font-weight:800;color:var(--ok)}
+.chb:disabled{opacity:.5;cursor:not-allowed}
+.phone{display:flex;gap:8px;margin:12px 0 4px}
+.phone .input{padding:10px 12px;font-size:15px}
+.kinds{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}
+.subh{font-weight:700;font-size:14px;margin:16px 0 4px}
+.ioshint{font-size:13px;color:var(--muted);background:var(--sunk);border:1px dashed var(--line);border-radius:12px;padding:9px 12px;margin-top:10px}
+@media (max-width:760px){
+  .t-side::before,.t-side::after{display:none}
+  .stats{grid-template-columns:repeat(3,1fr);gap:8px}
+  .stat{flex-direction:column;align-items:flex-start;gap:8px;padding:12px}
+  .stat .si{width:34px;height:34px;border-radius:11px}
+  .stat .si svg{width:17px;height:17px}
+  .wc{flex-basis:168px}
+  .prof .pstats{margin-inline-start:0;width:100%}
+  .t-side{justify-content:center;padding:16px 22px}
+  .t-main .live{margin-top:12px}
+  .ticket.is-today .t-num{font-size:30px}
+  .prof .pstats div{flex:1;min-width:0}
+}
+@media (max-width:420px){.stat b{font-size:22px}.stat span{font-size:12px;line-height:1.3;display:block}.day{grid-template-columns:52px 1fr;gap:12px}.dn b{font-size:19px}}
+/* ===== v3: scroll & motion ===== */
+.top{transition:box-shadow .3s,background .3s}
+.top .in{transition:padding .3s}
+.top.scrolled{background:color-mix(in srgb,var(--canvas) 88%,transparent);box-shadow:0 8px 24px -16px rgba(13,24,48,.35)}
+.top.scrolled .in{padding-block:6px}
+.top .mark{transition:transform .3s,width .3s,height .3s}
+.top.scrolled .mark{width:32px;height:32px}
+.aurora{will-change:transform}
+.rv{opacity:0;transform:translateY(18px) scale(.985);filter:blur(3px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1),filter .6s}
+.rv.in{opacity:1;transform:none;filter:none}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .stat,.wc{animation:pop-in linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+    @keyframes pop-in{from{opacity:0;transform:translateY(20px) scale(.96)}}
+  }
+}
+/* ticket tilt */
+.ticket{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.ticket.tilting{transition:transform .08s linear,box-shadow .25s}
+/* ripple */
+.rp{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;opacity:.22;transform:scale(0);animation:rp .6s ease-out forwards}
+@keyframes rp{to{transform:scale(1);opacity:0}}
+.btn,.seg button,.chip,.wc,.chb,.mjb,.tile{position:relative;overflow:hidden}
+/* month nav (scroll spy) */
+.mnav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 16px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+.mnav::-webkit-scrollbar{display:none}
+.mnav button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-weight:600;font-size:13px;padding:5px 12px;border-radius:999px;transition:all .25s}
+.mnav button small{color:var(--muted);font-weight:500;margin-inline-start:4px}
+.mnav button.on{background:var(--ink);border-color:var(--ink);color:var(--canvas)}
+.mnav button.on small{color:inherit;opacity:.7}
+.list .mo{top:calc(env(safe-area-inset-top,0px) + 108px);scroll-margin-top:160px}
+.day{scroll-margin-top:170px}
+/* events in the 7-day strip */
+.wc.ev{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 7%,var(--surface)),var(--surface))}
+.wc .wemo{font-size:22px;line-height:1;display:block;margin:8px 0 2px}
+/* share */
+.ft-share{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 22px;padding:18px 20px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink)}
+.ft-share b{display:block;font-size:16px}
+.ft-share span{font-size:14px;color:var(--muted)}
+.ft-share .btn{margin-inline-start:auto}
+#shareB svg{width:17px;height:17px}
+/* view transitions between pages */
+@media (prefers-reduced-motion:no-preference){
+  ::view-transition-old(root){animation:vt-out .22s ease both}
+  ::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes vt-out{to{opacity:0;transform:translateY(-6px)}}
+  @keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
+}
+@media (max-width:760px){.ft-share .btn{width:100%;margin:0}.mnav{top:calc(env(safe-area-inset-top,0px) + 56px)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.reveal{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
@@ -331,10 +528,12 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
     <a href="#/me" data-r="me" id="navMe">האזור שלי</a>
     <a href="#/admin" data-r="admin" id="navAdmin" hidden>ניהול</a>
   </nav>
+  <button class="themeb" id="shareB" type="button" aria-label="שיתוף האתר"></button>
   <button class="themeb" id="themeB" type="button"></button>
-</div></header>
+</div><div class="sprog" id="sprog"></div></header>
 <main class="wrap" id="app"><div class="skel" aria-hidden="true"></div></main>
-<footer class="ft">נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
+<footer class="ft"><div class="ft-share"><div><b>יש לך חברים במחזור?</b><span>שלחו להם את הלוח, ככה אף אחד לא מפספס מבחן.</span></div><button class="btn glow" type="button" id="shareF"></button></div>נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
+<button class="totop" id="totop" type="button" aria-label="חזרה למעלה"></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <dialog id="dlg"></dialog>
 <dialog id="onb" aria-label="התאמה אישית"></dialog>
@@ -348,9 +547,9 @@ const MAJOR_OF={'בגרות בארץ':'eretz','סיור ארץ':'eretz','חפי�
 const MONTHS=['ינואר','פברואר','מרץ','אפריל','מאי','יוני','יולי','אוגוסט','ספטמבר','אוקטובר','נובמבר','דצמבר'];
 const WD=['א׳','ב׳','ג׳','ד׳','ה׳','ו׳','ש׳'];
 const SITE=location.origin;
-const EMO=[[/שבת/,'🕯️'],[/ראש השנה/,'🍎'],[/כיפור/,'🤍'],[/סוכות|הושענא|שמחת תורה/,'🌿'],[/חנוכה/,'🕎'],[/בשבט/,'🌳'],[/פורים|אסתר/,'🎭'],[/פסח/,'🍷'],[/שבועות/,'🌾'],[/השואה|הזיכרון/,'🕯️'],[/העצמאות/,'🇮🇱'],[/ירושלים/,'🏛️'],[/בעומר/,'🔥'],[/צום|עשרה בטבת|גדליה/,'⏳'],[/הורים/,'👪'],[/סיור|מסע|חפירות/,'🥾'],[/הכתרה/,'🎓'],[/תעודות/,'📜'],[/שולחנות/,'💬']];
+const EMO=[[/צמאה/,'🎶'],[/קריוקי/,'🎤'],[/טיול שנתי/,'🏕️'],[/שוק פורים/,'🎪'],[/שבת/,'🕯️'],[/ראש השנה/,'🍎'],[/כיפור/,'🤍'],[/סוכות|הושענא|שמחת תורה/,'🌿'],[/חנוכה/,'🕎'],[/בשבט/,'🌳'],[/פורים|אסתר/,'🎭'],[/פסח/,'🍷'],[/שבועות/,'🌾'],[/השואה|הזיכרון/,'🕯️'],[/העצמאות/,'🇮🇱'],[/ירושלים/,'🏛️'],[/בעומר/,'🔥'],[/צום|עשרה בטבת|גדליה/,'⏳'],[/הורים/,'👪'],[/סיור|מסע|חפירות/,'🥾'],[/הכתרה/,'🎓'],[/תעודות/,'📜'],[/שולחנות/,'💬']];
 const emo=t=>{for(const[r,e]of EMO)if(r.test(t))return e;return '📌'};
-const isHoliday=t=>/שבת|ראש השנה|כיפור|סוכות|הושענא|שמחת תורה|חנוכה|בשבט|פורים|אסתר|פסח|שבועות|השואה|הזיכרון|העצמאות|ירושלים|בעומר|צום|גדליה|טבת/.test(t);
+const isHoliday=t=>!/שוק|צמאה|קריוקי|טיול/.test(t)&&/שבת|ראש השנה|כיפור|סוכות|הושענא|שמחת תורה|חנוכה|בשבט|פורים|אסתר|פסח|שבועות|השואה|הזיכרון|העצמאות|ירושלים|בעומר|צום|גדליה|טבת/.test(t);
 const I=(p,w=2)=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="${w}" stroke-linecap="round" stroke-linejoin="round">${p}</svg>`;
 const ICON={
   bell:I('<path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/>'),
@@ -369,6 +568,10 @@ const ICON={
   shield:I('<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>'),
   download:I('<path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M7 10l5 5 5-5M12 15V3"/>'),
   trash:I('<path d="M3 6h18M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/>'),
+  clock:I('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
+  grad:I('<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>'),
+  flame:I('<path d="M12 22c4 0 7-3 7-7 0-5-5-7-5-12-3 2-6 5-6 9-1-1-2-2-2-3-1 2-1 4-1 6 0 4 3 7 7 7z"/>'),
+  share:I('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>'),
   send:I('<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>')
 };
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
@@ -426,8 +629,9 @@ function route(){
   const cur=r==='/admin'?'admin':(r==='/me'||r==='/join')?'me':'home';
   const link=document.querySelector(`.nav a[data-r="${cur}"]`);if(link)link.setAttribute('aria-current','page');
   updateNav();
-  if(r==='/join')renderJoin();else if(r==='/me')renderMe();else if(r==='/admin')renderAdmin();else renderHome();
-  window.scrollTo({top:0});
+  const go=()=>{if(spyIO){spyIO.disconnect();spyIO=null}if(r==='/join')renderJoin();else if(r==='/me')renderMe();else if(r==='/admin')renderAdmin();else renderHome();window.scrollTo({top:0})};
+  if(route.done&&document.startViewTransition&&!RM)document.startViewTransition(go);else go();
+  route.done=true;
 }
 function updateNav(){
   $('#navMe').innerHTML=S.token&&S.me?`<span class="av">${esc(S.me.name.trim()[0]||'?')}</span>האזור שלי`:'האזור שלי';
@@ -465,7 +669,7 @@ function ticketHtml(nx,label,showActions){
   const cn=i=>S.cls==='all'&&i.c.length<4?` (${i.c.join(', ')})`:'';
   const titles=nx.items.map((i,ix)=>ix===0?esc(i.t):`<span class="more">+ ${esc(i.t)}${cn(i)}</span>`).join('');
   const C=2*Math.PI*56,frac=Math.max(.04,1-Math.min(n,30)/30);
-  return `<section class="ticket lift" style="--k:var(--${k})" aria-label="${label}">
+  return `<section class="ticket lift spot${n===0?' is-today':''}" style="--k:var(--${k})" aria-label="${label}">
     <div class="t-main">
       <div class="t-eyebrow">${label} <span class="pill k-${k}">${KIND[k]}</span>${m0?`<span class="mj">${MAJORS[m0][1]} ${MAJORS[m0][0]}</span>`:''}</div>
       <div class="t-title">${titles}</div>
@@ -482,7 +686,10 @@ function startTicket(nx){
   const live=$('#live');if(!live)return;
   const target=dt(nx.d);target.setHours(8,30,0,0);
   const tickL=()=>{let s=Math.max(0,Math.floor((target-Date.now())/1000));const d=Math.floor(s/86400);s%=86400;const h=Math.floor(s/3600);s%=3600;const m=Math.floor(s/60);s%=60;
-    live.innerHTML=[[d,'ימים'],[h,'שעות'],[m,'דקות'],[s,'שניות']].map(([v,l])=>`<div><b>${String(v).padStart(2,'0')}</b><span>${l}</span></div>`).join('')};
+    if(target-Date.now()<=0){live.outerHTML=`<div class="luck" id="live">🍀 בהצלחה! המבחן כבר התחיל</div>`;clearTimers();return}
+    const vals=[[d,'ימים'],[h,'שעות'],[m,'דקות'],[s,'שניות']];
+    if(!live.children.length)live.innerHTML=vals.map(([v,l])=>`<div><b>${String(v).padStart(2,'0')}</b><span>${l}</span></div>`).join('');
+    else vals.forEach(([v],ix)=>{const b=live.children[ix].firstElementChild,t=String(v).padStart(2,'0');if(b.textContent!==t){b.textContent=t;if(!RM){b.classList.remove('flip');void b.offsetWidth;b.classList.add('flip')}}})};
   tickL();timers.push(setInterval(tickL,1000));
 }
 function yearHtml(){
@@ -491,9 +698,20 @@ function yearHtml(){
   const now=Math.max(0,Math.min(100,(today-start)/span*100));
   const ticks=[];for(const d of DATA)for(const i of d.items)if((i.k==='bagrut'||i.k==='mock')&&forCls(i))ticks.push(`<i class="tk k-${i.k}${diff(d.d)<0?' past':''}" style="inset-inline-start:${pos(d.d)}%" title="${esc(i.t)} · ${pretty(d.d)}"></i>`);
   const months=['ספט׳','נוב׳','ינו׳','מרץ','מאי','יוני'];
-  return `<section class="card year lift"><div class="hd"><b>ציר השנה</b><span>${Math.round(now)}% מהשנה מאחוריכם · נקודות = בגרויות ומתכונות</span></div>
+  return `<section class="card year lift spot"><div class="hd"><b>ציר השנה</b><span>${Math.round(now)}% מהשנה מאחוריכם · נקודות = בגרויות ומתכונות</span></div>
     <div class="track"><div class="fill" data-w="${now}"></div>${ticks.join('')}<div class="now" style="inset-inline-start:${now}%">היום</div></div>
     <div class="mrow">${months.map(m=>`<span>${m}</span>`).join('')}</div></section>`;
+}
+function weekHtml(up){
+  const wk=DATA.filter(d=>{const n=diff(d.d);return n>=0&&n<=7}).map(d=>({...d,items:d.items.filter(i=>forCls(i))})).filter(d=>d.items.length);
+  const cards=wk.flatMap(d=>d.items.map(i=>{const n=diff(d.d);if(i.k==='event'){const ek=evKind(i);return `<button type="button" class="wc ev k-${ek}" data-go="${d.d}"><span class="wd2"><span>יום ${d.w}</span><b>${dt(d.d).getDate()}</b></span><span class="wemo">${emo(i.t)}</span><span class="wt">${esc(i.t)}</span><span class="when2">${inWords(n)}</span>${S.cls==='all'&&i.c.length<4?`<span class="wx">${i.c.join(', ')}</span>`:''}</button>`}return `<button type="button" class="wc k-${i.k}${n<=1?' hot':''}" data-go="${d.d}"><span class="wd2"><span>יום ${d.w}</span><b>${dt(d.d).getDate()}</b></span><span class="wt">${esc(i.t)}</span><span class="pill k-${i.k}">${KIND[i.k]}</span> <span class="when2">${inWords(n)}</span>${S.cls==='all'&&i.c.length<4?`<span class="wx">${i.c.join(', ')}</span>`:''}</button>`}));
+  return `<section class="week" aria-label="השבוע הקרוב"><div class="week-h"><h2>7 הימים הקרובים</h2><span>${cards.length?(()=>{const ex=wk.reduce((a,d)=>a+d.items.filter(i=>i.k!=='event').length,0),ev=cards.length-ex;return [ex?ex+' מבחנים':'',ev?ev+' אירועים':''].filter(Boolean).join(' · ')+' · לחיצה מקפיצה ללוח'})():''}</span></div><div class="wstrip">${cards.length?cards.join(''):'<div class="wfree">שבוע פנוי 😎 זמן טוב להתקדם בחומר</div>'}</div></section>`;
+}
+function goDay(d){
+  if(!S.k.event&&DATA.find(x=>x.d===d)?.items.every(i=>i.k==='event')){S.k.event=true;save();const c=app.querySelector('[data-k="event"]');if(c)c.setAttribute('aria-pressed','true');renderBoard()}
+  if(S.view!=='list'){S.view='list';save();app.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view==='list'));renderBoard()}
+  const el=app.querySelector(`.day[data-day="${d}"]`);if(!el)return;el.classList.add('in');
+  el.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});el.classList.remove('hl');void el.offsetWidth;el.classList.add('hl');
 }
 function renderHome(){
   const up=upcoming(),nx=up[0];
@@ -509,7 +727,8 @@ function renderHome(){
   app.innerHTML=`<div class="intro">
     <div><h1 class="sr">לוח המבחנים של שכבת י״ב</h1><div class="seg" role="group" aria-label="בחירת כיתה">${segBtns}</div>${who}</div>
     ${ticket}
-    <div class="stats"><div class="stat k-exam"><b data-c="${wk}">0</b><span>בשבוע הקרוב</span></div><div class="stat k-mock"><b data-c="${mo}">0</b><span>ב־30 הימים הקרובים</span></div><div class="stat k-bagrut"><b data-c="${bag}">0</b><span>בגרויות שנותרו</span></div></div>
+    ${weekHtml(up)}
+    <div class="stats"><div class="stat k-exam spot"><span class="si">${ICON.flame}</span><div><b data-c="${wk}">0</b><span>בשבוע הקרוב</span></div></div><div class="stat k-mock spot"><span class="si">${ICON.clock}</span><div><b data-c="${mo}">0</b><span>ב־30 הימים הקרובים</span></div></div><div class="stat k-bagrut spot"><span class="si">${ICON.grad}</span><div><b data-c="${bag}">0</b><span>בגרויות שנותרו</span></div></div></div>
     ${yearHtml()}
     <div style="height:14px"></div>
     ${banner}
@@ -524,6 +743,7 @@ function renderHome(){
   app.querySelectorAll('[data-k]').forEach(b=>b.onclick=()=>{S.k[b.dataset.k]=!S.k[b.dataset.k];save();b.setAttribute('aria-pressed',S.k[b.dataset.k]);renderBoard()});
   const pb=app.querySelector('[data-past]');pb.onclick=()=>{S.past=!S.past;pb.setAttribute('aria-pressed',S.past);renderBoard()};
   app.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>{S.view=b.dataset.view;save();app.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',x===b));renderBoard()});
+  app.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>goDay(b.dataset.go));
   const cb=app.querySelector('[data-act="cal"]');if(cb)cb.onclick=()=>openCal(S.cls!=='all'?S.cls:(S.me&&S.me.cls));
 }
 const vis=d=>d.items.filter(i=>forCls(i)&&S.k[i.k]);
@@ -535,19 +755,33 @@ const itemHtml=i=>{
 function renderBoard(){
   const el=$('#board');if(!el)return;
   if(S.view==='month')return renderMonth(el);
-  let html='',cur='',n=0;
+  let html='',cur='',n=0;const months=[];
   for(const d of DATA){
     const df=diff(d.d);if(df<0&&!S.past)continue;
     const its=vis(d);if(!its.length)continue;n++;
     const D=dt(d.d),mk=D.getFullYear()+'-'+D.getMonth();
-    if(mk!==cur){cur=mk;const cnt=DATA.filter(x=>{const y=dt(x.d);return y.getMonth()===D.getMonth()&&y.getFullYear()===D.getFullYear()&&(S.past||diff(x.d)>=0)}).reduce((a,x)=>a+x.items.filter(i=>i.k!=='event'&&forCls(i)&&S.k[i.k]).length,0);html+=`<div class="mo">${MONTHS[D.getMonth()]} ${D.getFullYear()}${cnt?`<small>${cnt} מבחנים</small>`:''}</div>`}
+    if(mk!==cur){cur=mk;const cnt=DATA.filter(x=>{const y=dt(x.d);return y.getMonth()===D.getMonth()&&y.getFullYear()===D.getFullYear()&&(S.past||diff(x.d)>=0)}).reduce((a,x)=>a+x.items.filter(i=>i.k!=='event'&&forCls(i)&&S.k[i.k]).length,0);months.push([mk,MONTHS[D.getMonth()],cnt]);html+=`<div class="mo" id="mo-${mk}">${MONTHS[D.getMonth()]} ${D.getFullYear()}${cnt?`<small>${cnt} מבחנים</small>`:''}</div>`}
     const soon=df>=0&&df<=7&&its.some(i=>i.k!=='event');
-    html+=`<div class="day rv${df<0?' past':''}${df===0?' today':''}${D.getDay()===6?' sat':''}"><div class="dn"><b>${D.getDate()}</b><i>${d.w}</i></div><div><div class="dmeta">${esc(d.h)}${soon?`<span class="soon">${inWords(df)}</span>`:''}</div>${its.map(itemHtml).join('')}</div></div>`;
+    html+=`<div data-day="${d.d}" class="day rv${df<0?' past':''}${df===0?' today':''}${D.getDay()===6?' sat':''}"><div class="dn"><b>${D.getDate()}</b><i>${d.w}</i></div><div><div class="dmeta">${esc(d.h)}${soon?`<span class="soon">${inWords(df)}</span>`:''}</div>${its.map(itemHtml).join('')}</div></div>`;
   }
-  el.innerHTML=`<div class="list">${n?html:'<div class="empty">אין מה להציג עם הסינון הזה. אפשר להדליק עוד סוגים למעלה.</div>'}</div>`;
+  const mnav=months.length>1?`<nav class="mnav" aria-label="קפיצה לחודש">${months.map(([k,m,c],i)=>`<button type="button" data-mo="${k}"${i===0?' class="on"':''}>${m}${c?`<small>${c}</small>`:''}</button>`).join('')}</nav>`:'';
+  el.innerHTML=mnav+`<div class="list">${n?html:'<div class="empty">אין מה להציג עם הסינון הזה. אפשר להדליק עוד סוגים למעלה.</div>'}</div>`;
   reveal(el);
+  spyMonths(el);
+}
+let spyIO=null;
+function spyMonths(el){
+  if(spyIO){spyIO.disconnect();spyIO=null}
+  const nav=el.querySelector('.mnav');if(!nav)return;
+  const setOn=k=>{nav.querySelectorAll('button').forEach(b=>{const on=b.dataset.mo===k;b.classList.toggle('on',on);if(on){const l=b.offsetLeft-nav.clientWidth/2+b.clientWidth/2;nav.scrollTo({left:l,behavior:RM?'auto':'smooth'})}})};
+  nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{const t=el.querySelector('#mo-'+b.dataset.mo);if(!t)return;const first=t.nextElementSibling||t;const navH=nav.getBoundingClientRect().height,topH=document.querySelector('.top').getBoundingClientRect().height;const y=first.getBoundingClientRect().top+scrollY-topH-navH-t.offsetHeight-8;scrollTo({top:y,behavior:RM?'auto':'smooth'});setOn(b.dataset.mo)});
+  const heads=[...el.querySelectorAll('.list .mo')];
+  const pick=()=>{let k=heads[0]&&heads[0].id.slice(3);for(const h of heads){if(h.getBoundingClientRect().top<200)k=h.id.slice(3)}return k};
+  let last=null;const upd=()=>{const k=pick();if(k&&k!==last){last=k;setOn(k)}};
+  spyIO={disconnect(){removeEventListener('scroll',upd)}};addEventListener('scroll',upd,{passive:true});
 }
 function renderMonth(el){
+  if(spyIO){spyIO.disconnect();spyIO=null}
   if(!S.month){const nx=upcoming()[0];const b=nx?dt(nx.d):today;S.month=new Date(b.getFullYear(),b.getMonth(),1)}
   const y=S.month.getFullYear(),m=S.month.getMonth();
   const first=new Date(y,m,1),start=new Date(y,m,1-first.getDay());
@@ -593,7 +827,7 @@ function renderJoin(){
     <div><h1 class="h-page">תזכורות <span class="grad">שעובדות בשבילך</span></h1><p class="lead">נרשמים פעם אחת ולא מפספסים אף מבחן. בלי סיסמה ובלי אפליקציה.</p></div>
     <div class="join">
       <ul class="perks">
-        <li><span class="ic">${ICON.mail}</span><div><b>מייל לפני כל מבחן</b><span>רק על המבחנים של הכיתה והמגמות שלך. שבוע לפני, 3 ימים או יום לפני, לבחירתך.</span></div></li>
+        <li><span class="ic">${ICON.mail}</span><div><b>תזכורת לפני כל מבחן</b><span>על מבחנים, בגרויות ומתכונות של הכיתה והמגמות שלך. שבוע לפני, 3 ימים או יום לפני, לבחירתך.</span></div></li>
         <li><span class="ic">${ICON.user}</span><div><b>אזור אישי</b><span>ספירה לאחור, סימון מה כבר למדת, והגדרות התזכורות.</span></div></li>
         <li><span class="ic">${ICON.cal}</span><div><b>חיבור ליומן בטלפון</b><span>כל המבחנים נכנסים ליומן ומתעדכנים לבד.</span></div></li>
         <li><span class="ic">${ICON.target}</span><div><b>הסרה בלחיצה</b><span>בכל מייל יש קישור להסרה. המייל שלך לא מוצג לאף אחד.</span></div></li>
@@ -623,7 +857,7 @@ function renderJoin(){
       const r=go.getBoundingClientRect();confetti(r.left+r.width/2,r.top,120);
       toast(j.existing?'הפרטים עודכנו':'נרשמת! שלחנו לך מייל אישור');
       setTimeout(()=>location.hash='#/me',500);
-    }catch(x){err.textContent='ההרשמה לא נשמרה. בדקו את הפרטים ונסו שוב.';go.disabled=false;go.textContent='הרשמה לתזכורות'}
+    }catch(x){err.textContent=x.message==='phone'?'מספר הטלפון לא תקין.':'ההרשמה לא נשמרה. בדקו את הפרטים ונסו שוב.';go.disabled=false;go.textContent='הרשמה לתזכורות'}
   };
 }
 async function renderMe(){
@@ -654,7 +888,39 @@ function renderLogin(){
 }
 async function patchMe(body,msg='נשמר'){
   try{const j=await api('/api/me?t='+encodeURIComponent(S.token),{method:'POST',body});S.me=j.sub;LS.set('yb.me',S.me);updateNav();toast(msg);return true}
-  catch(e){toast('השמירה נכשלה. נסו שוב.');return false}
+  catch(e){toast(e.message==='phone'?'מספר הטלפון לא תקין':'השמירה נכשלה. נסו שוב.');return false}
+}
+let CH=null;const getChannels=async()=>{if(CH)return CH;try{const r=await fetch('/api/push-key');if(!r.ok)throw 0;const j=await r.json();CH={ok:true,key:j.key||null,ch:{email:true,...(j.channels||{})}}}catch(e){CH={ok:false,key:null,ch:{email:true}}}return CH};
+const urlB64=s=>{const p='='.repeat((4-s.length%4)%4);const b=atob((s+p).replace(/-/g,'+').replace(/_/g,'/'));return Uint8Array.from(b,c=>c.charCodeAt(0))};
+const isIOS=/iP(hone|ad|od)/.test(navigator.userAgent),standalone=matchMedia('(display-mode: standalone)').matches||navigator.standalone;
+async function enablePush(){
+  const {key}=await getChannels();
+  if(!key||!('serviceWorker' in navigator)||!('PushManager' in window)){toast(isIOS&&!standalone?'באייפון צריך קודם להוסיף את האתר למסך הבית':'הדפדפן הזה לא תומך בהתראות');return false}
+  try{const reg=await navigator.serviceWorker.register('/sw.js');const perm=await Notification.requestPermission();if(perm!=='granted'){toast('לא אושרו התראות בדפדפן');return false}
+    const sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:urlB64(key)});
+    return await patchMe({pushSub:sub.toJSON()},'התראות בטלפון הופעלו 🔔')}catch(e){toast('לא הצלחנו להפעיל התראות');return false}
+}
+const KINDS2=[['bagrut','בגרויות'],['mock','מתכונות'],['exam','מבחנים'],['event','שבתות ישיבה ואירועים']];
+function channelsCard(me,CHS){
+  if(!CHS.ok)return '';
+  const ch={email:true,sms:false,whatsapp:false,push:false,...(me.channels||{})},kinds=me.kinds&&me.kinds.length?me.kinds:KINDS2.map(k=>k[0]);
+  const opts=[['email','✉️','מייל',me.email],['push','🔔','התראה בטלפון',me.pushCount?'פעיל ב־'+me.pushCount+' מכשירים':'בלי אפליקציה']].filter(([k])=>k==='email'||CHS.ch[k]);
+  return `<section class="card" id="chcard"><div class="card-h"><h2>איך לקבל תזכורות</h2></div><div class="card-b">
+    <div class="chan">${opts.map(([k,e,n,sub])=>`<button type="button" class="chb" data-ch="${k}" aria-pressed="${!!ch[k]}"><span class="ci">${e}</span><span>${n}<small dir="auto">${esc(sub)}</small></span></button>`).join('')}</div>
+    ${CHS.ch.push&&isIOS&&!standalone?`<div class="ioshint">📲 באייפון: לוחצים על כפתור השיתוף ← "הוספה למסך הבית", פותחים את האתר מהמסך הבית ומפעילים כאן התראות.</div>`:''}
+    <div class="subh">על מה להזכיר</div>
+    <div class="kinds">${KINDS2.map(([k,l])=>`<button type="button" class="chip k-${k==='event'?'event':k}" data-kind="${k}" aria-pressed="${kinds.includes(k)}"><i></i>${l}</button>`).join('')}</div>
+  </div></section>`;
+}
+function bindChannels(){
+  const me=S.me,card=$('#chcard');if(!card)return;
+  const cur=()=>({email:true,sms:false,whatsapp:false,push:false,...(S.me.channels||{})});
+  card.querySelectorAll('[data-ch]').forEach(b=>b.onclick=async()=>{const k=b.dataset.ch,c=cur(),on=!c[k];
+    if(k==='push'&&on&&!S.me.pushCount){b.disabled=true;const ok=await enablePush();b.disabled=false;if(!ok)return}
+    c[k]=on;if(!Object.values(c).some(Boolean)){toast('צריך להשאיר לפחות דרך אחת');return}
+    b.setAttribute('aria-pressed',on);if(await patchMe({channels:c},on?'נוסף ערוץ תזכורות':'הערוץ כובה'))drawMe()});
+  card.querySelectorAll('[data-kind]').forEach(b=>b.onclick=async()=>{const all=KINDS2.map(k=>k[0]);let ks=S.me.kinds&&S.me.kinds.length?[...S.me.kinds]:all;const k=b.dataset.kind;ks=ks.includes(k)?ks.filter(x=>x!==k):[...ks,k];if(!ks.length){toast('צריך לבחור לפחות סוג אחד');return}
+    b.setAttribute('aria-pressed',ks.includes(k));await patchMe({kinds:ks},'נשמר')});
 }
 function drawMe(){
   clearTimers();
@@ -663,7 +929,8 @@ function drawMe(){
   const done=keys.filter(k=>S.prep.has(k)).length,nx=up[0],rm=me.remind||[];
   const remRow=(d,t,s)=>`<div class="row"><div class="lbl"><b>${t}</b><span>${s}</span></div><button type="button" class="switch" role="switch" aria-checked="${rm.includes(d)}" data-rm="${d}" aria-label="${t}"${me.paused?' disabled':''}></button></div>`;
   app.innerHTML=`<div class="intro">
-    <div class="prof"><div class="avatar">${esc(me.name.trim()[0]||'?')}</div><div><h1>שלום, ${esc(me.name.split(' ')[0])} 👋</h1><p><span class="pill k-bagrut">${me.cls}</span>${mj.map(m=>`<span class="mj">${MAJORS[m][1]} ${MAJORS[m][0]}</span>`).join('')}${me.isAdmin?`<span class="pill k-event">${ICON.shield.replace('<svg','<svg width="12" height="12"')} מנהל</span>`:''}</p></div></div>
+    <div class="prof"><div class="avatar">${esc(me.name.trim()[0]||'?')}</div><div><h1>שלום, ${esc(me.name.split(' ')[0])} 👋</h1><p><span class="pill k-bagrut">${me.cls}</span>${mj.map(m=>`<span class="mj">${MAJORS[m][1]} ${MAJORS[m][0]}</span>`).join('')}${me.isAdmin?`<span class="pill k-event">${ICON.shield.replace('<svg','<svg width="12" height="12"')} מנהל</span>`:''}</p></div>
+      <div class="pstats"><div><b>${up.filter(d=>diff(d.d)<=7).reduce((a,d)=>a+d.items.length,0)}</b><span>השבוע</span></div><div><b>${nx?(diff(nx.d)===0?'היום':diff(nx.d)):'–'}</b><span>${nx&&diff(nx.d)===0?'יש מבחן':'ימים לבא'}</span></div><div><b>${keys.length?Math.round(done/keys.length*100):0}%</b><span>מוכנות</span></div></div></div>
     ${nx?ticketHtml(nx,'המבחן הבא שלך',false):''}
     <div class="me-grid">
       <div>
@@ -674,7 +941,8 @@ function drawMe(){
         <section class="card"><div class="card-h"><h2>חיבור ליומן</h2></div><div class="card-b"><p style="margin:0 0 12px;color:var(--muted);font-size:14px">כל המבחנים של ${me.cls}${mj.length?' והמגמות שלך':''} ביומן של הטלפון, עם התראה ערב לפני.</p>${calButtons(me.cls,mj)}</div></section>
       </div>
       <div>
-        <section class="card"><div class="card-h"><h2>תזכורות במייל</h2></div><div class="card-b">
+        ${channelsCard(me,CH||{ok:false,ch:{email:true}})}
+        <section class="card"><div class="card-h"><h2>מתי להזכיר</h2></div><div class="card-b">
           ${remRow(7,'שבוע לפני','מספיק זמן להתחיל ללמוד')}${remRow(3,'3 ימים לפני','חזרה אחרונה על החומר')}${remRow(1,'יום לפני','שלא תשכחו להביא מה שצריך')}
           <div class="row"><div class="lbl"><b>השהיית כל התזכורות</b><span>למשל בחופשה. אפשר להפעיל שוב בכל זמן.</span></div><button type="button" class="switch" role="switch" aria-checked="${!!me.paused}" data-pause aria-label="השהיית תזכורות"></button></div>
         </div></section>
@@ -688,6 +956,7 @@ function drawMe(){
       </div>
     </div></div>`;
   if(nx)startTicket(nx);
+  bindChannels();if(!CH)getChannels().then(()=>{if(location.hash.startsWith('#/me')&&S.me)drawMe()});
   app.querySelectorAll('[data-prep]').forEach(b=>b.onclick=()=>{const k=b.dataset.prep;const was=S.prep.has(k);was?S.prep.delete(k):S.prep.add(k);save();
     if(!was){const r=b.getBoundingClientRect();const all=keys.every(x=>S.prep.has(x));confetti(r.left+r.width/2,r.top+r.height/2,all?160:40);toast(all?'מוכנים לכל המבחנים הקרובים! 🏆':'כל הכבוד!')}
     drawMe()});
@@ -748,6 +1017,20 @@ function drawAdmin(q='',fc='all'){
   app.querySelector('[data-reload]').onclick=renderAdmin;
 }
 window.addEventListener('hashchange',route);
+const sprog=$('#sprog'),totop=$('#totop');totop.innerHTML=ICON.prev;totop.onclick=()=>scrollTo({top:0,behavior:RM?'auto':'smooth'});
+const topEl=$('.top'),aur=$('.aurora');let sTick=false;
+const onScroll=()=>{if(sTick)return;sTick=true;requestAnimationFrame(()=>{sTick=false;const h=document.documentElement,max=h.scrollHeight-innerHeight;sprog.style.width=(max>0?scrollY/max*100:0)+'%';totop.classList.toggle('on',scrollY>700);topEl.classList.toggle('scrolled',scrollY>8);if(!RM)aur.style.transform=`translate3d(0,${(-scrollY*.18).toFixed(1)}px,0)`})};
+addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+const FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
+document.addEventListener('pointermove',e=>{if(RM||!FINE)return;const t=e.target.closest&&e.target.closest('.ticket');document.querySelectorAll('.ticket.tilting').forEach(x=>{if(x!==t){x.classList.remove('tilting');x.style.transform=''}});if(!t)return;const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.classList.add('tilting');t.style.transform=`perspective(1200px) rotateX(${(-y*3).toFixed(2)}deg) rotateY(${(x*4).toFixed(2)}deg) translateY(-2px)`},{passive:true});
+document.addEventListener('pointerleave',()=>document.querySelectorAll('.ticket.tilting').forEach(x=>{x.classList.remove('tilting');x.style.transform=''}));
+document.addEventListener('pointerdown',e=>{if(RM)return;const b=e.target.closest&&e.target.closest('.btn,.seg button,.chip,.wc,.chb,.mjb,.tile,.mnav button');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.2,s=document.createElement('span');s.className='rp';s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),650)},{passive:true});
+async function shareSite(){const data={title:'לוח מבחנים י״ב',text:'כל המבחנים, הבגרויות ושבתות הישיבה של השכבה במקום אחד, עם תזכורות 📚',url:location.origin+'/'};
+  if(navigator.share){try{await navigator.share(data);return}catch(e){if(e&&e.name==='AbortError')return}}
+  open('https://wa.me/?text='+encodeURIComponent(data.text+'\n'+data.url),'_blank','noopener')}
+$('#shareB').innerHTML=ICON.share;$('#shareB').onclick=shareSite;
+$('#shareF').innerHTML=ICON.share+'שיתוף עם המחזור';$('#shareF').onclick=shareSite;
+document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.spot');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
 fetch('/days.json').then(r=>r.json()).then(d=>{DATA=d;if(S.cls!=='all'&&!CLASSES.includes(S.cls))S.cls='all';if(S.me)syncFromMe();route();setTimeout(()=>onboarding(false),400);
   if(S.token)api('/api/me?t='+encodeURIComponent(S.token)).then(j=>{S.me=j.sub;LS.set('yb.me',S.me);syncFromMe();updateNav()}).catch(()=>{});})
   .catch(()=>{app.innerHTML='<div class="empty">הלוח לא נטען. רעננו את הדף.</div>'});
