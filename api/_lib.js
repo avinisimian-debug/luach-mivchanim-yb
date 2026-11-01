@@ -29,7 +29,7 @@ export const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 export async function getSub(id) {
   if (!isId(id)) return null;
   try {
-    const r = await get(`subs/${id}.json`, { access: 'private' });
+    const r = await get(`subs/${id}.json`, { access: 'private', useCache: false }); // bypass CDN cache so edits and deletes are seen immediately
     if (!r || r.statusCode !== 200) return null;
     return JSON.parse(await new Response(r.stream).text());
   } catch { return null; }
