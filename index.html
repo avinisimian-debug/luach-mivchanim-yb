@@ -7,6 +7,16 @@
 <meta name="description" content="לוח המבחנים של שכבת י״ב לפי כיתה ומגמה, עם תזכורת במייל לפני כל מבחן.">
 <meta name="theme-color" content="#F2F4F8">
 <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0' stop-color='%232F52D6'/><stop offset='1' stop-color='%230E8A70'/></linearGradient></defs><rect width='64' height='64' rx='16' fill='url(%23g)'/><text x='32' y='44' font-size='30' text-anchor='middle' fill='white' font-family='Arial' font-weight='bold'>יב</text></svg>">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="לוח מבחנים י״ב">
+<meta property="og:title" content="לוח מבחנים י״ב · תשפ״ז">
+<meta property="og:description" content="כל המבחנים, הבגרויות, המתכונות ושבתות הישיבה של השכבה, לפי כיתה ומגמה. עם תזכורות לפני כל מבחן.">
+<meta property="og:url" content="https://luach-mivchanim-yb.vercel.app/">
+<meta property="og:image" content="https://luach-mivchanim-yb.vercel.app/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="he_IL">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="manifest" href="/manifest.webmanifest">
 <link rel="apple-touch-icon" href="/icon-192.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
@@ -414,7 +424,7 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
 /* back to top */
 .totop{position:fixed;inset-inline-start:18px;bottom:calc(18px + env(safe-area-inset-bottom,0px));width:46px;height:46px;border-radius:50%;border:1px solid var(--line);background:color-mix(in srgb,var(--surface) 85%,transparent);backdrop-filter:blur(10px);box-shadow:var(--shadow);display:grid;place-items:center;z-index:25;opacity:0;transform:translateY(16px) scale(.9);pointer-events:none;transition:all .3s cubic-bezier(.2,.8,.2,1)}
 .totop.on{opacity:1;transform:none;pointer-events:auto}
-.totop svg{width:20px;height:20px;transform:rotate(90deg)}
+.totop svg{width:20px;height:20px;transform:rotate(-90deg)}
 /* personal area */
 .prof{position:relative;margin:4px 0 16px;padding:22px;border-radius:var(--r-xl);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);overflow:hidden;isolation:isolate;flex-wrap:wrap}
 .prof::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(500px 200px at 90% -20%,color-mix(in srgb,var(--glow1) 35%,transparent),transparent 70%),radial-gradient(400px 200px at 0% 120%,color-mix(in srgb,var(--glow2) 30%,transparent),transparent 70%)}
@@ -455,7 +465,58 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
   .prof .pstats div{flex:1;min-width:0}
 }
 @media (max-width:420px){.stat b{font-size:22px}.stat span{font-size:12px;line-height:1.3;display:block}.day{grid-template-columns:52px 1fr;gap:12px}.dn b{font-size:19px}}
-@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}}
+/* ===== v3: scroll & motion ===== */
+.top{transition:box-shadow .3s,background .3s}
+.top .in{transition:padding .3s}
+.top.scrolled{background:color-mix(in srgb,var(--canvas) 88%,transparent);box-shadow:0 8px 24px -16px rgba(13,24,48,.35)}
+.top.scrolled .in{padding-block:6px}
+.top .mark{transition:transform .3s,width .3s,height .3s}
+.top.scrolled .mark{width:32px;height:32px}
+.aurora{will-change:transform}
+.rv{opacity:0;transform:translateY(18px) scale(.985);filter:blur(3px);transition:opacity .6s cubic-bezier(.2,.8,.2,1),transform .6s cubic-bezier(.2,.8,.2,1),filter .6s}
+.rv.in{opacity:1;transform:none;filter:none}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.2,.8,.2,1),transform .7s cubic-bezier(.2,.8,.2,1)}
+.reveal.in{opacity:1;transform:none}
+@supports (animation-timeline:view()){
+  @media (prefers-reduced-motion:no-preference){
+    .stat,.wc{animation:pop-in linear both;animation-timeline:view();animation-range:entry 0% entry 60%}
+    @keyframes pop-in{from{opacity:0;transform:translateY(20px) scale(.96)}}
+  }
+}
+/* ticket tilt */
+.ticket{transform-style:preserve-3d;transition:transform .5s cubic-bezier(.2,.8,.2,1),box-shadow .25s}
+.ticket.tilting{transition:transform .08s linear,box-shadow .25s}
+/* ripple */
+.rp{position:absolute;border-radius:50%;pointer-events:none;background:currentColor;opacity:.22;transform:scale(0);animation:rp .6s ease-out forwards}
+@keyframes rp{to{transform:scale(1);opacity:0}}
+.btn,.seg button,.chip,.wc,.chb,.mjb,.tile{position:relative;overflow:hidden}
+/* month nav (scroll spy) */
+.mnav{position:sticky;top:calc(env(safe-area-inset-top,0px) + 58px);z-index:5;display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding:10px 16px;background:color-mix(in srgb,var(--surface) 92%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line2)}
+.mnav::-webkit-scrollbar{display:none}
+.mnav button{flex:none;border:1px solid var(--line);background:var(--surface);color:var(--ink2);font-weight:600;font-size:13px;padding:5px 12px;border-radius:999px;transition:all .25s}
+.mnav button small{color:var(--muted);font-weight:500;margin-inline-start:4px}
+.mnav button.on{background:var(--ink);border-color:var(--ink);color:var(--canvas)}
+.mnav button.on small{color:inherit;opacity:.7}
+.list .mo{top:calc(env(safe-area-inset-top,0px) + 108px);scroll-margin-top:160px}
+.day{scroll-margin-top:170px}
+/* events in the 7-day strip */
+.wc.ev{background:linear-gradient(160deg,color-mix(in srgb,var(--c) 7%,var(--surface)),var(--surface))}
+.wc .wemo{font-size:22px;line-height:1;display:block;margin:8px 0 2px}
+/* share */
+.ft-share{display:flex;align-items:center;gap:16px;flex-wrap:wrap;margin:0 0 22px;padding:18px 20px;border-radius:var(--r-lg);background:var(--surface);border:1px solid var(--line);box-shadow:var(--shadow);color:var(--ink)}
+.ft-share b{display:block;font-size:16px}
+.ft-share span{font-size:14px;color:var(--muted)}
+.ft-share .btn{margin-inline-start:auto}
+#shareB svg{width:17px;height:17px}
+/* view transitions between pages */
+@media (prefers-reduced-motion:no-preference){
+  ::view-transition-old(root){animation:vt-out .22s ease both}
+  ::view-transition-new(root){animation:vt-in .32s cubic-bezier(.2,.8,.2,1) both}
+  @keyframes vt-out{to{opacity:0;transform:translateY(-6px)}}
+  @keyframes vt-in{from{opacity:0;transform:translateY(10px)}}
+}
+@media (max-width:760px){.ft-share .btn{width:100%;margin:0}.mnav{top:calc(env(safe-area-inset-top,0px) + 56px)}}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv,.reveal{opacity:1;transform:none;filter:none}}
 </style>
 </head>
 <body>
@@ -467,10 +528,11 @@ footer.ft{max-width:1000px;margin:0 auto;padding:0 18px 40px;color:var(--faint);
     <a href="#/me" data-r="me" id="navMe">האזור שלי</a>
     <a href="#/admin" data-r="admin" id="navAdmin" hidden>ניהול</a>
   </nav>
+  <button class="themeb" id="shareB" type="button" aria-label="שיתוף האתר"></button>
   <button class="themeb" id="themeB" type="button"></button>
 </div><div class="sprog" id="sprog"></div></header>
 <main class="wrap" id="app"><div class="skel" aria-hidden="true"></div></main>
-<footer class="ft">נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
+<footer class="ft"><div class="ft-share"><div><b>יש לך חברים במחזור?</b><span>שלחו להם את הלוח, ככה אף אחד לא מפספס מבחן.</span></div><button class="btn glow" type="button" id="shareF"></button></div>נבנה מתוך לוח המבחנים של בית הספר. שינויים בלוח הרשמי גוברים על האתר.</footer>
 <button class="totop" id="totop" type="button" aria-label="חזרה למעלה"></button>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
 <dialog id="dlg"></dialog>
@@ -509,6 +571,7 @@ const ICON={
   clock:I('<circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>'),
   grad:I('<path d="M22 10 12 5 2 10l10 5 10-5z"/><path d="M6 12v5c3 2 9 2 12 0v-5"/>'),
   flame:I('<path d="M12 22c4 0 7-3 7-7 0-5-5-7-5-12-3 2-6 5-6 9-1-1-2-2-2-3-1 2-1 4-1 6 0 4 3 7 7 7z"/>'),
+  share:I('<circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="m8.6 13.5 6.8 4M15.4 6.5l-6.8 4"/>'),
   send:I('<path d="m22 2-7 20-4-9-9-4z"/><path d="M22 2 11 13"/>')
 };
 const LS={get(k,d){try{const v=localStorage.getItem(k);return v==null?d:JSON.parse(v)}catch(e){return d}},set(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}},del(k){try{localStorage.removeItem(k)}catch(e){}}};
@@ -566,8 +629,9 @@ function route(){
   const cur=r==='/admin'?'admin':(r==='/me'||r==='/join')?'me':'home';
   const link=document.querySelector(`.nav a[data-r="${cur}"]`);if(link)link.setAttribute('aria-current','page');
   updateNav();
-  if(r==='/join')renderJoin();else if(r==='/me')renderMe();else if(r==='/admin')renderAdmin();else renderHome();
-  window.scrollTo({top:0});
+  const go=()=>{if(spyIO){spyIO.disconnect();spyIO=null}if(r==='/join')renderJoin();else if(r==='/me')renderMe();else if(r==='/admin')renderAdmin();else renderHome();window.scrollTo({top:0})};
+  if(route.done&&document.startViewTransition&&!RM)document.startViewTransition(go);else go();
+  route.done=true;
 }
 function updateNav(){
   $('#navMe').innerHTML=S.token&&S.me?`<span class="av">${esc(S.me.name.trim()[0]||'?')}</span>האזור שלי`:'האזור שלי';
@@ -639,11 +703,12 @@ function yearHtml(){
     <div class="mrow">${months.map(m=>`<span>${m}</span>`).join('')}</div></section>`;
 }
 function weekHtml(up){
-  const wk=up.filter(d=>diff(d.d)<=7);
-  const cards=wk.flatMap(d=>d.items.map(i=>{const n=diff(d.d);return `<button type="button" class="wc k-${i.k}${n<=1?' hot':''}" data-go="${d.d}"><span class="wd2"><span>יום ${d.w}</span><b>${dt(d.d).getDate()}</b></span><span class="wt">${esc(i.t)}</span><span class="pill k-${i.k}">${KIND[i.k]}</span> <span class="when2">${inWords(n)}</span>${S.cls==='all'&&i.c.length<4?`<span class="wx">${i.c.join(', ')}</span>`:''}</button>`}));
-  return `<section class="week" aria-label="השבוע הקרוב"><div class="week-h"><h2>7 הימים הקרובים</h2><span>${cards.length?cards.length+' מבחנים · לחיצה מקפיצה ללוח':''}</span></div><div class="wstrip">${cards.length?cards.join(''):'<div class="wfree">שבוע פנוי ממבחנים 😎 זמן טוב להתקדם בחומר</div>'}</div></section>`;
+  const wk=DATA.filter(d=>{const n=diff(d.d);return n>=0&&n<=7}).map(d=>({...d,items:d.items.filter(i=>forCls(i))})).filter(d=>d.items.length);
+  const cards=wk.flatMap(d=>d.items.map(i=>{const n=diff(d.d);if(i.k==='event'){const ek=evKind(i);return `<button type="button" class="wc ev k-${ek}" data-go="${d.d}"><span class="wd2"><span>יום ${d.w}</span><b>${dt(d.d).getDate()}</b></span><span class="wemo">${emo(i.t)}</span><span class="wt">${esc(i.t)}</span><span class="when2">${inWords(n)}</span>${S.cls==='all'&&i.c.length<4?`<span class="wx">${i.c.join(', ')}</span>`:''}</button>`}return `<button type="button" class="wc k-${i.k}${n<=1?' hot':''}" data-go="${d.d}"><span class="wd2"><span>יום ${d.w}</span><b>${dt(d.d).getDate()}</b></span><span class="wt">${esc(i.t)}</span><span class="pill k-${i.k}">${KIND[i.k]}</span> <span class="when2">${inWords(n)}</span>${S.cls==='all'&&i.c.length<4?`<span class="wx">${i.c.join(', ')}</span>`:''}</button>`}));
+  return `<section class="week" aria-label="השבוע הקרוב"><div class="week-h"><h2>7 הימים הקרובים</h2><span>${cards.length?(()=>{const ex=wk.reduce((a,d)=>a+d.items.filter(i=>i.k!=='event').length,0),ev=cards.length-ex;return [ex?ex+' מבחנים':'',ev?ev+' אירועים':''].filter(Boolean).join(' · ')+' · לחיצה מקפיצה ללוח'})():''}</span></div><div class="wstrip">${cards.length?cards.join(''):'<div class="wfree">שבוע פנוי 😎 זמן טוב להתקדם בחומר</div>'}</div></section>`;
 }
 function goDay(d){
+  if(!S.k.event&&DATA.find(x=>x.d===d)?.items.every(i=>i.k==='event')){S.k.event=true;save();const c=app.querySelector('[data-k="event"]');if(c)c.setAttribute('aria-pressed','true');renderBoard()}
   if(S.view!=='list'){S.view='list';save();app.querySelectorAll('[data-view]').forEach(x=>x.setAttribute('aria-pressed',x.dataset.view==='list'));renderBoard()}
   const el=app.querySelector(`.day[data-day="${d}"]`);if(!el)return;el.classList.add('in');
   el.scrollIntoView({behavior:RM?'auto':'smooth',block:'center'});el.classList.remove('hl');void el.offsetWidth;el.classList.add('hl');
@@ -690,19 +755,33 @@ const itemHtml=i=>{
 function renderBoard(){
   const el=$('#board');if(!el)return;
   if(S.view==='month')return renderMonth(el);
-  let html='',cur='',n=0;
+  let html='',cur='',n=0;const months=[];
   for(const d of DATA){
     const df=diff(d.d);if(df<0&&!S.past)continue;
     const its=vis(d);if(!its.length)continue;n++;
     const D=dt(d.d),mk=D.getFullYear()+'-'+D.getMonth();
-    if(mk!==cur){cur=mk;const cnt=DATA.filter(x=>{const y=dt(x.d);return y.getMonth()===D.getMonth()&&y.getFullYear()===D.getFullYear()&&(S.past||diff(x.d)>=0)}).reduce((a,x)=>a+x.items.filter(i=>i.k!=='event'&&forCls(i)&&S.k[i.k]).length,0);html+=`<div class="mo">${MONTHS[D.getMonth()]} ${D.getFullYear()}${cnt?`<small>${cnt} מבחנים</small>`:''}</div>`}
+    if(mk!==cur){cur=mk;const cnt=DATA.filter(x=>{const y=dt(x.d);return y.getMonth()===D.getMonth()&&y.getFullYear()===D.getFullYear()&&(S.past||diff(x.d)>=0)}).reduce((a,x)=>a+x.items.filter(i=>i.k!=='event'&&forCls(i)&&S.k[i.k]).length,0);months.push([mk,MONTHS[D.getMonth()],cnt]);html+=`<div class="mo" id="mo-${mk}">${MONTHS[D.getMonth()]} ${D.getFullYear()}${cnt?`<small>${cnt} מבחנים</small>`:''}</div>`}
     const soon=df>=0&&df<=7&&its.some(i=>i.k!=='event');
     html+=`<div data-day="${d.d}" class="day rv${df<0?' past':''}${df===0?' today':''}${D.getDay()===6?' sat':''}"><div class="dn"><b>${D.getDate()}</b><i>${d.w}</i></div><div><div class="dmeta">${esc(d.h)}${soon?`<span class="soon">${inWords(df)}</span>`:''}</div>${its.map(itemHtml).join('')}</div></div>`;
   }
-  el.innerHTML=`<div class="list">${n?html:'<div class="empty">אין מה להציג עם הסינון הזה. אפשר להדליק עוד סוגים למעלה.</div>'}</div>`;
+  const mnav=months.length>1?`<nav class="mnav" aria-label="קפיצה לחודש">${months.map(([k,m,c],i)=>`<button type="button" data-mo="${k}"${i===0?' class="on"':''}>${m}${c?`<small>${c}</small>`:''}</button>`).join('')}</nav>`:'';
+  el.innerHTML=mnav+`<div class="list">${n?html:'<div class="empty">אין מה להציג עם הסינון הזה. אפשר להדליק עוד סוגים למעלה.</div>'}</div>`;
   reveal(el);
+  spyMonths(el);
+}
+let spyIO=null;
+function spyMonths(el){
+  if(spyIO){spyIO.disconnect();spyIO=null}
+  const nav=el.querySelector('.mnav');if(!nav)return;
+  const setOn=k=>{nav.querySelectorAll('button').forEach(b=>{const on=b.dataset.mo===k;b.classList.toggle('on',on);if(on){const l=b.offsetLeft-nav.clientWidth/2+b.clientWidth/2;nav.scrollTo({left:l,behavior:RM?'auto':'smooth'})}})};
+  nav.querySelectorAll('button').forEach(b=>b.onclick=()=>{const t=el.querySelector('#mo-'+b.dataset.mo);if(!t)return;const first=t.nextElementSibling||t;const navH=nav.getBoundingClientRect().height,topH=document.querySelector('.top').getBoundingClientRect().height;const y=first.getBoundingClientRect().top+scrollY-topH-navH-t.offsetHeight-8;scrollTo({top:y,behavior:RM?'auto':'smooth'});setOn(b.dataset.mo)});
+  const heads=[...el.querySelectorAll('.list .mo')];
+  const pick=()=>{let k=heads[0]&&heads[0].id.slice(3);for(const h of heads){if(h.getBoundingClientRect().top<200)k=h.id.slice(3)}return k};
+  let last=null;const upd=()=>{const k=pick();if(k&&k!==last){last=k;setOn(k)}};
+  spyIO={disconnect(){removeEventListener('scroll',upd)}};addEventListener('scroll',upd,{passive:true});
 }
 function renderMonth(el){
+  if(spyIO){spyIO.disconnect();spyIO=null}
   if(!S.month){const nx=upcoming()[0];const b=nx?dt(nx.d):today;S.month=new Date(b.getFullYear(),b.getMonth(),1)}
   const y=S.month.getFullYear(),m=S.month.getMonth();
   const first=new Date(y,m,1),start=new Date(y,m,1-first.getDay());
@@ -947,8 +1026,18 @@ function drawAdmin(q='',fc='all'){
 }
 window.addEventListener('hashchange',route);
 const sprog=$('#sprog'),totop=$('#totop');totop.innerHTML=ICON.prev;totop.onclick=()=>scrollTo({top:0,behavior:RM?'auto':'smooth'});
-const onScroll=()=>{const h=document.documentElement,max=h.scrollHeight-innerHeight;sprog.style.width=(max>0?scrollY/max*100:0)+'%';totop.classList.toggle('on',scrollY>700)};
+const topEl=$('.top'),aur=$('.aurora');let sTick=false;
+const onScroll=()=>{if(sTick)return;sTick=true;requestAnimationFrame(()=>{sTick=false;const h=document.documentElement,max=h.scrollHeight-innerHeight;sprog.style.width=(max>0?scrollY/max*100:0)+'%';totop.classList.toggle('on',scrollY>700);topEl.classList.toggle('scrolled',scrollY>8);if(!RM)aur.style.transform=`translate3d(0,${(-scrollY*.18).toFixed(1)}px,0)`})};
 addEventListener('scroll',onScroll,{passive:true});addEventListener('resize',onScroll);
+const FINE=matchMedia('(hover:hover) and (pointer:fine)').matches;
+document.addEventListener('pointermove',e=>{if(RM||!FINE)return;const t=e.target.closest&&e.target.closest('.ticket');document.querySelectorAll('.ticket.tilting').forEach(x=>{if(x!==t){x.classList.remove('tilting');x.style.transform=''}});if(!t)return;const r=t.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;t.classList.add('tilting');t.style.transform=`perspective(1200px) rotateX(${(-y*3).toFixed(2)}deg) rotateY(${(x*4).toFixed(2)}deg) translateY(-2px)`},{passive:true});
+document.addEventListener('pointerleave',()=>document.querySelectorAll('.ticket.tilting').forEach(x=>{x.classList.remove('tilting');x.style.transform=''}));
+document.addEventListener('pointerdown',e=>{if(RM)return;const b=e.target.closest&&e.target.closest('.btn,.seg button,.chip,.wc,.chb,.mjb,.tile,.mnav button');if(!b||b.disabled)return;const r=b.getBoundingClientRect(),d=Math.max(r.width,r.height)*2.2,s=document.createElement('span');s.className='rp';s.style.cssText=`width:${d}px;height:${d}px;left:${e.clientX-r.left-d/2}px;top:${e.clientY-r.top-d/2}px`;b.appendChild(s);setTimeout(()=>s.remove(),650)},{passive:true});
+async function shareSite(){const data={title:'לוח מבחנים י״ב',text:'כל המבחנים, הבגרויות ושבתות הישיבה של השכבה במקום אחד, עם תזכורות 📚',url:location.origin+'/'};
+  if(navigator.share){try{await navigator.share(data);return}catch(e){if(e&&e.name==='AbortError')return}}
+  open('https://wa.me/?text='+encodeURIComponent(data.text+'\n'+data.url),'_blank','noopener')}
+$('#shareB').innerHTML=ICON.share;$('#shareB').onclick=shareSite;
+$('#shareF').innerHTML=ICON.share+'שיתוף עם המחזור';$('#shareF').onclick=shareSite;
 document.addEventListener('pointermove',e=>{const el=e.target.closest&&e.target.closest('.spot');if(!el)return;const r=el.getBoundingClientRect();el.style.setProperty('--mx',(e.clientX-r.left)+'px');el.style.setProperty('--my',(e.clientY-r.top)+'px')},{passive:true});
 fetch('/days.json').then(r=>r.json()).then(d=>{DATA=d;if(S.cls!=='all'&&!CLASSES.includes(S.cls))S.cls='all';if(S.me)syncFromMe();route();setTimeout(()=>onboarding(false),400);
   if(S.token)api('/api/me?t='+encodeURIComponent(S.token)).then(j=>{S.me=j.sub;LS.set('yb.me',S.me);syncFromMe();updateNav()}).catch(()=>{});})
