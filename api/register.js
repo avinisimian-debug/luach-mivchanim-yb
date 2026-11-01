@@ -1,4 +1,5 @@
 import { CLASSES, EMAIL_RE, subId, legacyIds, getSub, saveSub, deleteSub, normalize, publicSub, cleanMajors, todayIL, upcomingFor, welcomeEmail, sendEmail, readBody } from './_lib.js';
+import { applyNotifyPrefs, normalizeNotify } from './_notify.js';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'method' });
@@ -13,11 +14,15 @@ export default async function handler(req, res) {
 
   const id = subId(email);
   const existing = await getSub(id);
-  const sub = normalize({ ...(existing || {}), id, name, cls, email, majors: cleanMajors(b.majors), createdAt: existing?.createdAt || new Date().toISOString() });
-  try { await saveSub(sub); } catch (e) { console.error('save', e); return res.status(500).json({ ok: false, error: 'save' }); }
+  const base = { ...(existing || {}), id, name, cls, email, majors: cleanMajors(b.majors), createdAt: existing?.createdAt || new Date().toISOString() };
+  const sub = normalize(base);
+  const err = applyNotifyPrefs(sub, b);
+  if (err) return res.status(400).json({ ok: false, error: err });
+  const saved = normalizeNotify(sub);
+  try { await saveSub(saved); } catch (e) { console.error('save', e); return res.status(500).json({ ok: false, error: 'save' }); }
   for (const lid of legacyIds(email)) if (lid !== id) await deleteSub(lid);
 
-  const mail = await sendEmail(email, name, welcomeEmail(sub, upcomingFor(cls, todayIL(), 5, sub.majors)), id);
+  const mail = await sendEmail(email, name, welcomeEmail(saved, upcomingFor(cls, todayIL(), 5, saved.majors)), id);
   if (!mail.ok) console.warn('welcome email', mail.error);
-  return res.status(200).json({ ok: true, token: id, sub: publicSub(sub), emailed: mail.ok, existing: !!existing });
+  return res.status(200).json({ ok: true, token: id, sub: publicSub(saved) });
 }
